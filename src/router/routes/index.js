@@ -30,7 +30,7 @@ const SecondPage = lazy(() => import("../../views/SecondPage"));
 const Login = lazy(() => import("../../views/Login"));
 const Register = lazy(() => import("../../views/Register"));
 const ForgotPassword = lazy(() => import("../../views/ForgotPassword"));
-const Map = lazy(() => import("../../views/Map"));
+const MapLayout = lazy(() => import("../../views/MapLayout"));
 const Error = lazy(() => import("../../views/Error"));
 
 // ** Merge Routes
@@ -71,7 +71,7 @@ const Routes = [
   },
   {
     path: "/map",
-    element: <Map />,
+    element: <MapLayout />,
     meta: {
       layout: "blank",
     },
@@ -119,7 +119,7 @@ const MergeLayoutRoutes = (layout, defaultLayout) => {
             // eslint-disable-next-line multiline-ternary
             isObjEmpty(route.element.props) && isBlank === false
               ? // eslint-disable-next-line multiline-ternary
-                LayoutWrapper
+              LayoutWrapper
               : Fragment;
 
           route.element = (
