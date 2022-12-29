@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Map from "./MapLayout";
+import Map from "./Map";
 import { Layers, TileLayer, VectorLayer } from "./Layers";
 import { Style, Icon } from "ol/style";
 import Feature from "ol/Feature";
@@ -10,18 +10,15 @@ import { Controls, FullScreenControl } from "./Controls";
 
 import mapConfig from "./config.json";
 
-
 const markersLonLat = [mapConfig.kansasCityLonLat, mapConfig.blueSpringsLonLat];
 
-
 export default function MapLayout() {
-
   const [center, setCenter] = useState(mapConfig.center);
   const [zoom, setZoom] = useState(13);
 
-  const [showLayer1, setShowLayer1] = useState(true);
-  const [showLayer2, setShowLayer2] = useState(true);
-  const [showMarker, setShowMarker] = useState(false);
+  // const [showLayer1, setShowLayer1] = useState(true);
+  // const [showLayer2, setShowLayer2] = useState(true);
+  // const [showMarker, setShowMarker] = useState(false);
 
   // const [features, setFeatures] = useState(addMarkers(markersLonLat));
 
@@ -44,16 +41,4 @@ export default function MapLayout() {
       </Map>
     </div>
   );
-};
-
-
-
-
-
-
-
-
-
-
-
-
+}
