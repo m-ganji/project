@@ -24,6 +24,7 @@ export default function MapLayout() {
 
   return (
     <div>
+      <AnimatedRadialMenuIcon />
       <Map center={fromLonLat(center)} zoom={zoom}>
         <Layers>
           <TileLayer source={osm()} zIndex={0} />
@@ -35,10 +36,13 @@ export default function MapLayout() {
             />
           )} */}
         </Layers>
-        {/* <Controls>
+        <Controls>
           <FullScreenControl />
-        </Controls> */}
+        </Controls>
       </Map>
     </div>
   );
 }
+
+
+
