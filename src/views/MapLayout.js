@@ -9,6 +9,7 @@ import { fromLonLat, get } from "ol/proj";
 import { Controls, FullScreenControl } from "./Controls";
 
 import mapConfig from "./config.json";
+import Drawer from "./Elements/Drawer.js";
 
 const markersLonLat = [mapConfig.kansasCityLonLat, mapConfig.blueSpringsLonLat];
 
@@ -24,7 +25,7 @@ export default function MapLayout() {
 
   return (
     <div>
-      <AnimatedRadialMenuIcon />
+      <Drawer />
       <Map center={fromLonLat(center)} zoom={zoom}>
         <Layers>
           <TileLayer source={osm()} zIndex={0} />
