@@ -10,11 +10,11 @@ export default function Drawer() {
     return (
         <div className="menu position-absolute" >
             <div className='circle'>
-                <Hamburger toggled={isOpen} toggle={setOpen} color="white" size={15} duration={0.5} />
+                <Hamburger toggled={isOpen} toggle={setOpen} color="white" size={15} duration={0.9} />
             </div>
-            <div className='d-flex flex-column align-items-center'>
-                {isOpen && <button className='smallcircle d-flex justify-content-center align-items-center border-0'><MdHome /></button>}
-                {isOpen && <button className='smallcircle d-flex justify-content-center align-items-center border-0'><AiOutlineSearch /></button>}
+            <div className='d-flex flex-column align-items-center twobutton'>
+                {isOpen && <button className='smallcircle d-flex justify-content-center align-items-center border-0'><MdHome size="1.5em" /></button>}
+                {isOpen && <button className='smallcircle d-flex justify-content-center align-items-center border-0'><AiOutlineSearch size="1.5em" /></button>}
             </div>
         </div>
     )

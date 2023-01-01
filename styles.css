@@ -18,15 +18,27 @@
 }
 
 .smallcircle {
+    content: "";
     background-color: #E7E7E7;
     margin-bottom: 20px;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    animation: moveToLeft 5s linear infinite;
+    animation-name: change-color, grow-shrink, expand;
+    animation-duration: 8s, 5s, 5s;
+    animation-iteration-count: infinite;
+}
+
+.smallcircle:hover {
+    background-color: rgb(245, 245, 245);
 }
 
 .ol-map {
     position: relative;
+}
+
+.twobutton {
+    opacity: 1;
+    transition: opacity 8500ms;
 }
