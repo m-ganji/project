@@ -34,10 +34,6 @@
     background-color: rgb(245, 245, 245);
 }
 
-.ol-map {
-    position: relative;
-}
-
 .twobutton {
     opacity: 1;
     transition: opacity 8500ms;

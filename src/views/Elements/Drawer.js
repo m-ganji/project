@@ -8,7 +8,7 @@ export default function Drawer() {
     const [isOpen, setOpen] = useState(false)
 
     return (
-        <div className="menu position-absolute" >
+        <div className="menu " >
             <div className='circle'>
                 <Hamburger toggled={isOpen} toggle={setOpen} color="white" size={15} duration={0.9} />
             </div>
