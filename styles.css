@@ -35,6 +35,19 @@
 }
 
 .twobutton {
-    opacity: 1;
+    /* opacity: 1; */
     transition: opacity 8500ms;
+}
+
+.leaflet-container {
+    height: 100vh;
+    width: 100%;
+}
+
+img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive {
+    display: none;
+}
+
+.leaflet-pane.leaflet-shadow-pane {
+    display: none;
 }
