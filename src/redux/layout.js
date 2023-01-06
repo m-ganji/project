@@ -35,6 +35,7 @@ export const layoutSlice = createSlice({
     menuHidden: themeConfig.layout.menu.isHidden,
     contentWidth: themeConfig.layout.contentWidth,
     navbarColor: themeConfig.layout.navbar.backgroundColor,
+    buttonSituation: "",
   },
   reducers: {
     handleRTL: (state, action) => {
@@ -66,6 +67,9 @@ export const layoutSlice = createSlice({
     handleContentWidth: (state, action) => {
       state.contentWidth = action.payload;
     },
+    handleButtonSituation: (state, action) => {
+      state.buttonSituation = action.payload;
+    },
     handleMenuCollapsed: (state, action) => {
       state.menuCollapsed = action.payload;
       window.localStorage.setItem(
@@ -86,6 +90,7 @@ export const {
   handleFooterType,
   handleNavbarColor,
   handleContentWidth,
+  handleButtonSituation,
   handleMenuCollapsed,
 } = layoutSlice.actions;
 

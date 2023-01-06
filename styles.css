@@ -1,53 +1,66 @@
 .menu {
-    /* background-color: #1067C6; */
-    width: 50px;
-    /* height: 200px; */
-    border-radius: 50%;
-    margin-top: 20px;
-    margin-left: 20px;
-    z-index: 1;
+  /* background-color: #1067C6; */
+  width: 50px;
+  /* height: 200px; */
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-left: 20px;
+  z-index: 1;
 }
 
 .circle {
-    background-color: #1067C6;
-    margin-bottom: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #1067c6;
+  margin-bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .smallcircle {
-    content: "";
-    background-color: #E7E7E7;
-    margin-bottom: 20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    animation-name: change-color, grow-shrink, expand;
-    animation-duration: 8s, 5s, 5s;
-    animation-iteration-count: infinite;
+  content: "";
+  background-color: #e7e7e7;
+  margin-bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  animation-name: change-color, grow-shrink, expand;
+  animation-duration: 8s, 5s, 5s;
+  animation-iteration-count: infinite;
 }
 
 .smallcircle:hover {
-    background-color: rgb(245, 245, 245);
+  background-color: rgb(245, 245, 245);
 }
 
 .twobutton {
-    /* opacity: 1; */
-    transition: opacity 8500ms;
+  /* opacity: 1; */
+  transition: opacity 8500ms;
 }
 
 .leaflet-container {
-    height: 100vh;
-    width: 100%;
+  height: 100vh;
+  width: 100%;
 }
 
 img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive {
-    display: none;
+  display: none;
 }
 
 .leaflet-pane.leaflet-shadow-pane {
-    display: none;
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  z-index: 1000;
+}
+
+.leaflet-container.leaflet-touch.leaflet-retina.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+  position: relative;
+}
+
+.leaflet-control-zoom.leaflet-bar.leaflet-control {
+  display: none;
 }
