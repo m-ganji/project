@@ -68,3 +68,54 @@ img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive {
 .yellow {
   background-color: hsl(37, 94%, 62%);
 }
+
+.background-login {
+  background-color: #f6f5f7;
+}
+
+.input-height {
+  height: 40px;
+}
+
+.container-login {
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+}
+
+.g-recaptcha>div {
+  width: 100% !important;
+}
+
+.g-recaptcha iframe {
+  width: 100% !important;
+}
+
+.captcha {
+  margin: 0 auto;
+  width: 65%;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 480px) {
+  .captcha {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .captcha {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .captcha {
+    width: 93%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .captcha {
+    width: 100%;
+    float: left;
+  }
+}
