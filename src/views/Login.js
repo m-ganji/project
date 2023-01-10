@@ -18,7 +18,7 @@ export default function Login() {
             <ReCAPTCHA
               sitekey="6LeNv-EjAAAAAB3P4mLppe2s4NKddzWJoUqso8VX"
               onChange={onChange}
-              className="mb-2 g-recaptcha w-100"
+            // className="mb-2 g-recaptcha w-100"
             />
           </div>
           <button className='border-0 w-75 mb-3 pt-1 pb-1 yellow rounded textlogin'>ورود به سیستم </button>

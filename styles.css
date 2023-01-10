@@ -275,4 +275,10 @@ input[type=password] {
   .textbelow {
     font-size: 14px;
   }
+
+  .captcha {
+    transform: scale(0.6);
+    -webkit-transform: scale(0.6);
+    width: 100% !important;
+  }
 }
