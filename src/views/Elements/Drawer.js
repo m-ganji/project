@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
 import { MdHome } from "react-icons/md";
@@ -11,6 +11,12 @@ export default function Drawer() {
 
   const [isOpen, setOpen] = useState(false);
   const [isOpenHome, setIsOpenHome] = useState(false);
+
+
+  // useEffect(() => {
+  //   dispatch(handleButtonSituation(isOpenHome));
+  // }, []);
+
   dispatch(handleButtonSituation(isOpenHome));
 
   return (
@@ -30,6 +36,7 @@ export default function Drawer() {
             className="smallcircle d-flex justify-content-center align-items-center border-0"
             onClick={() => setIsOpenHome(!isOpenHome)}
           >
+
             <MdHome size="1.5em" />
           </button>
         )}

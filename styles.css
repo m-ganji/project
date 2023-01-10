@@ -1,3 +1,83 @@
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 100;
+  src: url('./fonts/woff/IRANSansX-Thin.woff') format('woff'),
+    url('./fonts/woff2/IRANSansX-Thin.woff2') format('woff2');
+}
+
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 200;
+  src: url('./fonts/woff/IRANSansX-UltraLight.woff') format('woff'),
+    url('./fonts/woff2/IRANSansX-UltraLight.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 300;
+  src: url('./fonts/woff/IRANSansX-Light.woff') format('woff'),
+    url('./fonts/woff2/IRANSansX-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 500;
+  src: url('./fonts/woff/IRANSansX-Medium.woff') format('woff'),
+    url('./fonts/woff2/IRANSansX-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 600;
+  src: url('./fonts/woff/IRANSansX-DemiBold.woff') format('woff'),
+    url('./fonts/woff2/IRANSansX-DemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 800;
+  src: url('./fonts/woff/IRANSansX-ExtraBold.woff') format('woff'),
+    url('./fonts/woff2/IRANSansX-ExtraBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 900;
+  src: url('./fonts/woff/IRANSansX-Black.woff') format('woff'),
+    url('./fonts/woff2/IRANSansX-Black.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: bold;
+  src: url('./fonts/woff/IRANSansX-Bold.woff') format('woff'),
+    url('./fonts/woff2/IRANSansX-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: normal;
+  src: url('./fonts/woff/IRANSansX-Regular.woff') format('woff'),
+    url('./fonts/woff2/IRANSansX-Regular.woff2') format('woff2');
+}
+
+body,
+#root,
+.wrapper {
+  /* height: 100%; */
+  font-family: IRANSansX;
+}
+
 .menu {
   /* background-color: #1067C6; */
   width: 50px;
@@ -81,41 +161,118 @@ img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive {
   box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
 }
 
-.g-recaptcha>div {
-  width: 100% !important;
-}
-
-.g-recaptcha iframe {
-  width: 100% !important;
-}
-
 .captcha {
   margin: 0 auto;
   width: 65%;
   margin-bottom: 1rem;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
 }
 
-@media screen and (max-width: 480px) {
-  .captcha {
-    width: 70%;
+.textbelow {
+  font-size: 20px;
+  color: #222;
+  font-weight: bold;
+}
+
+.textlogin {
+  color: #0a0909;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: IRANSans;
+}
+
+.plchldr::placeholder {
+  padding-right: 10px;
+}
+
+input[type=text] {
+  padding-right: 10px;
+}
+
+input[type=password] {
+  padding-right: 10px;
+}
+
+/* // Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .d-flex.justify-content-center.align-items-center.w-100.vh-100.col-form-label.background-login {
+    width: 100vw !important;
+    display: flex;
+    justify-content: initial;
   }
-}
 
-@media screen and (max-width: 425px) {
-  .captcha {
-    width: 80%;
+  .textbelow {
+    font-size: 10px !important;
   }
-}
 
-@media screen and (max-width: 375px) {
-  .captcha {
-    width: 93%;
+  .responsive-form {
+    width: 75% !important;
   }
+
+  .captcha {
+    margin: 0 auto;
+    width: 65%;
+    margin-bottom: 1rem;
+    transform: scale(0.4);
+    -webkit-transform: scale(0.4);
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+  }
+
 }
 
-@media screen and (max-width: 375px) {
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  .w-50.d-flex.flex-row.bg-white.container-login.border-1.rounded {
+    width: 75% !important;
+  }
+
   .captcha {
-    width: 100%;
-    float: left;
+    margin: 0 auto;
+    width: 65%;
+    margin-bottom: 1rem;
+    transform: scale(0.6);
+    -webkit-transform: scale(0.6);
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+  }
+
+  .captcha {
+    margin: 0 auto;
+    width: 65%;
+    margin-bottom: 1rem;
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+  }
+
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  .w-50.d-flex.flex-row.bg-white.container-login.border-1.rounded {
+    width: 75% !important;
+  }
+
+  .captcha {
+    margin: 0 auto;
+    width: 65%;
+    margin-bottom: 1rem;
+    transform: scale(0.6);
+    -webkit-transform: scale(0.6);
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+  }
+
+}
+
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  .textbelow {
+    font-size: 14px;
   }
 }
