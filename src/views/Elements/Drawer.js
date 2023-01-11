@@ -13,11 +13,11 @@ export default function Drawer() {
   const [isOpenHome, setIsOpenHome] = useState(false);
 
 
-  // useEffect(() => {
-  //   dispatch(handleButtonSituation(isOpenHome));
-  // }, []);
+  useEffect(() => {
+    dispatch(handleButtonSituation(isOpenHome));
+  });
 
-  dispatch(handleButtonSituation(isOpenHome));
+  // dispatch(handleButtonSituation(isOpenHome));
 
   return (
     <div className="menu ">
