@@ -15,6 +15,8 @@ export default function Login() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        window.location.href = response.data.redirect;
+        // console.log(response.data.redirect);
       })
       .catch(function (error) {
         console.log(error);
