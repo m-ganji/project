@@ -15,11 +15,14 @@ export default function Login() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        window.location.href = response.data.redirect;
-        // console.log(response.data.redirect);
+        localStorage.setItem('cookie', JSON.stringify(response.data.cookie));
+        if (JSON.stringify(response.data.result) == "true") {
+          window.location.href = "/map";
+        }
       })
       .catch(function (error) {
         console.log(error);
+        // alert("dsada")
       });
   }
   const handleChange = (event) => {
@@ -56,7 +59,7 @@ export default function Login() {
             type="text"
             id="username"
             placeholder="نام کاربری"
-            autocomplete="off"
+            // autocomplete="off"
             height={200}
             onChange={handleChange}
           />
@@ -67,14 +70,14 @@ export default function Login() {
             type="password"
             id="password"
             placeholder="کلمه عبور"
-            autocomplete="off"
+            // autocomplete="off"
             onChange={handleChange2}
           />
           <div className="captcha w-75">
             <ReCAPTCHA
               sitekey="6LeNv-EjAAAAAB3P4mLppe2s4NKddzWJoUqso8VX"
               onChange={onChange}
-              // className="mb-2 g-recaptcha w-100"
+            // className="mb-2 g-recaptcha w-100"
             />
           </div>
           <button
