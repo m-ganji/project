@@ -17,7 +17,7 @@ export default function Login() {
         console.log(JSON.stringify(response.data));
         localStorage.setItem('cookie', JSON.stringify(response.data.cookie));
         if (JSON.stringify(response.data.result) == "true") {
-          window.location.href = "/map";
+          window.location.href = "/map"
         }
       })
       .catch(function (error) {
