@@ -6,17 +6,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from 'react-toastify';
 import { Button } from "reactstrap";
 
-
-
 function onChange(value) {
   console.log("Captcha value:", value);
 }
 
 export default function Login() {
-  const [user, setUser] = useState("Start typing and see what happens");
-  const [pass, setPass] = useState("Start typing");
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
 
-  function handleModalOpen() {
+  function handleApi() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
@@ -38,17 +36,16 @@ export default function Login() {
         }
       })
       .catch(function (error) {
-        // console.log(error);
-
+        console.log(error);
       });
   }
-  const handleChange = (event) => {
+  const handleChangeUsername = (event) => {
     console.log(event.target.value);
     setUser(event.target.value);
     // setPass(event.target.value);
   };
 
-  const handleChange2 = (event) => {
+  const handleChangePassword = (event) => {
     console.log(event.target.value);
     setPass(event.target.value);
     // setPass(event.target.value);
@@ -78,7 +75,7 @@ export default function Login() {
             placeholder="نام کاربری"
             // autocomplete="off"
             height={200}
-            onChange={handleChange}
+            onChange={handleChangeUsername}
           />
           <input
             name="password"
@@ -88,7 +85,7 @@ export default function Login() {
             id="password"
             placeholder="کلمه عبور"
             // autocomplete="off"
-            onChange={handleChange2}
+            onChange={handleChangePassword}
           />
           <div className="captcha w-75">
             <ReCAPTCHA
@@ -101,8 +98,7 @@ export default function Login() {
             color="warning"
             className="border-0 w-75 mb-3 pt-1 pb-1 yellow rounded textlogin text-black"
             onClick={() => {
-              handleModalOpen();
-              // searchURL();
+              handleApi();
             }}
           >
             ورود به سیستم{" "}
