@@ -178,7 +178,7 @@ img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive {
 }
 
 .textlogin {
-  color: #0a0909;
+  color: #0a0909 !important;
   font-size: 16px;
   font-weight: bold;
   font-family: IRANSans;
@@ -194,6 +194,10 @@ input[type=text] {
 
 input[type=password] {
   padding-right: 10px;
+}
+
+button.border-0.w-75.mb-3.pt-1.pb-1.yellow.rounded.textlogin.text-black.btn.btn-warning {
+  color: black !important;
 }
 
 /* // Extra small devices (portrait phones, less than 576px) */

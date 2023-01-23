@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import logo from "../assets/images/logo_login.png";
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import { Button } from "reactstrap";
+
+
 
 function onChange(value) {
   console.log("Captcha value:", value);
@@ -15,14 +20,26 @@ export default function Login() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        localStorage.setItem('cookie', JSON.stringify(response.data.cookie));
         if (JSON.stringify(response.data.result) == "true") {
+          localStorage.setItem('cookie', JSON.stringify(response.data.cookie));
+
           window.location.href = "/map"
+        } else {
+          toast.error('!نام کاربری یا رمز عبور درست نیست', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         }
       })
       .catch(function (error) {
-        console.log(error);
-        // alert("dsada")
+        // console.log(error);
+
       });
   }
   const handleChange = (event) => {
@@ -80,15 +97,28 @@ export default function Login() {
             // className="mb-2 g-recaptcha w-100"
             />
           </div>
-          <button
-            className="border-0 w-75 mb-3 pt-1 pb-1 yellow rounded textlogin"
+          <Button
+            color="warning"
+            className="border-0 w-75 mb-3 pt-1 pb-1 yellow rounded textlogin text-black"
             onClick={() => {
               handleModalOpen();
               // searchURL();
             }}
           >
             ورود به سیستم{" "}
-          </button>
+          </Button >
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
         </div>
         <div className="w-50 yellow d-flex align-items-center justify-content-center flex-column text-black">
           <img src={logo} className="mt-5 mb-3 w-50" />
@@ -96,6 +126,6 @@ export default function Login() {
           <p className="mb-5 textbelow">شرکت بهینه رسام پارس</p>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
