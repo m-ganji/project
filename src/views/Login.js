@@ -5,23 +5,36 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from 'react-toastify';
 import { Button } from "reactstrap";
-
-function onChange(value) {
-  console.log("Captcha value:", value);
-}
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+
+  const navigateTo = useNavigate();
+
+  const [token, setToken] = useState("");
+  function onChange(value) {
+    console.log("Captcha value:", value);
+    setToken(value)
+  }
+
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
+  function handleLogin() {
 
-  function handleApi() {
+    var data = `username=${user}&password=${pass}&grecaptcha=${token}`;
+
+    var config = {
+      method: "post",
+      url: "https://rassam-pars.ir/rassam/api/public/session",
+      data: data,
+    };
+
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         if (JSON.stringify(response.data.result) == "true") {
           localStorage.setItem('cookie', JSON.stringify(response.data.cookie));
-
-          window.location.href = "/map"
+          navigateTo('/map')
         } else {
           toast.error('!نام کاربری یا رمز عبور درست نیست', {
             position: "top-center",
@@ -49,14 +62,6 @@ export default function Login() {
     console.log(event.target.value);
     setPass(event.target.value);
     // setPass(event.target.value);
-  };
-
-  var data = `username=${user}&password=${pass}&grecaptcha=03AD1IbLDcPDi9-5saTzc719OitCXzUAyM9M74Y5vDwwlC9qgeRSr5IdWYeVT9VFCX7U99Xe8vqYJUTH-Cjdbcr5yTF9KvxrcKZ4e5Q8idtEqNJAanamO6xEqpTYQNc0AiptytSN2XOFvcTl0wYbHeiovkawv8tjrs_pAn4cQIUX3skdrguDJP1-WBLTRImbGAMowmj_nsEkOnRdjjJ5nU9YY33xgD7rFXFxosDKensny_am8gcJXY3SrNZY_PZzQpv53dwg2uIYfAv0vW84n4AUJXRElRW0zU7SsxEU-44x20zwgLdLIRq79lF1Z_8Gvx3R8zpWlSdHWPeXbgj1px0QJ3XYvNo10IiMExCsD1MyJb9rCCTeRU_oOEFrHXoo4TUQdEaoDVLp0C5B4A6bGnJ6myIXW3zgYj1MclGtgyJLndzAZzV0M-k16d8yDj6JKiKnLdW6ehCIBincU6U11q-oLkyY1kQP-SrrTaP44nj2SY5AUzrexg0a5SIs7b_UwzY-0sKcmw6Z8ozDQeRJHCpNozz9_DTNvSsbHTOCeI-eLUPNhJbl-8w1g`;
-
-  var config = {
-    method: "post",
-    url: "https://rassam-pars.ir/rassam/api/public/session",
-    data: data,
   };
 
   return (
@@ -89,16 +94,16 @@ export default function Login() {
           />
           <div className="captcha w-75">
             <ReCAPTCHA
-              sitekey="6LeNv-EjAAAAAB3P4mLppe2s4NKddzWJoUqso8VX"
+              sitekey="6LfnFRgiAAAAAGbcWS-LcYmgftG-Ws-6DwALFQ8u"
               onChange={onChange}
             // className="mb-2 g-recaptcha w-100"
             />
           </div>
           <Button
             color="warning"
-            className="border-0 w-75 mb-3 pt-1 pb-1 yellow rounded textlogin text-black"
+            className="border-0 w-75 mb-3 pt-1 pb-1 yellow rounded textlogin"
             onClick={() => {
-              handleApi();
+              handleLogin();
             }}
           >
             ورود به سیستم{" "}

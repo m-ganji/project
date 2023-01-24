@@ -196,7 +196,7 @@ input[type=password] {
   padding-right: 10px;
 }
 
-button.border-0.w-75.mb-3.pt-1.pb-1.yellow.rounded.textlogin.text-black.btn.btn-warning {
+button.border-0.w-75.mb-3.pt-1.pb-1.yellow.rounded.textlogin.btn.btn-warning {
   color: black !important;
 }
 
