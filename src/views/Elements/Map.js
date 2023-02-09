@@ -1,6 +1,6 @@
 import React, { createRef, Component } from "react";
 import {
-  Map,
+  MapContainer,
   TileLayer,
   Marker,
   Popup,
@@ -8,11 +8,10 @@ import {
   WMSTileLayer,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useSelector } from "react-redux";
+// import axios from "axios";
+import { WMSTileLayerWithHeader } from "./WMSTileLayerWithHeader";
 
 export default class MapExample extends Component {
-  // const buttonCompare =
-
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
@@ -20,6 +19,7 @@ export default class MapExample extends Component {
     this.groupRef = createRef();
     // this.buttonSituation = useSelector((state) => state.layout.buttonSituation);
     this.state = {
+      // data: null,
       locations: [
         {
           name: "1",
@@ -59,8 +59,7 @@ export default class MapExample extends Component {
   render() {
     return (
       <div>
-        {/* <div onClick={this.handleClick}>Zoom</div> */}
-        <Map
+        <MapContainer
           center={{ lat: 30.660803, lng: 50.984062 }}
           zoom={12}
           ref={this.mapRef}
@@ -69,16 +68,17 @@ export default class MapExample extends Component {
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <WMSTileLayer
-            url="http://10.26.106.232:8080/geoserver/ows?"
-            layers="rassam-ws:pow_distr_rigo_boundary,rassam-ws:oh_mv_line,rassam-ws:auto_boostr,rassam-ws:auto_switch,rassam-ws:busbar,rassam-ws:circt_brk,rassam-ws:contactor,rassam-ws:ct,rassam-ws:cut_out,rassam-ws:data_logger,rassam-ws:dist_tr,rassam-ws:discnt_s,rassam-ws:distrb_box,rassam-ws:earth_sys,rassam-ws:flt_indc,rassam-ws:fuse_switch,rassam-ws:lv_feeder,rassam-ws:lv_isolator,rassam-ws:lv_jumper,rassam-ws:lv_pole,rassam-ws:lv_s_brd,rassam-ws:lv_selfstand_terminal,rassam-ws:modem,rassam-ws:mof,rassam-ws:mv_c_hd,rassam-ws:mv_c_jnt,rassam-ws:mv_cpaci,rassam-ws:mv_feeder,rassam-ws:mv_isolator,rassam-ws:mv_jumpr,rassam-ws:no_subscribers,rassam-ws:oh_lv_line,rassam-ws:mv_pole,rassam-ws:mv_s_brd,rassam-ws:mv_selfstand_terminal,rassam-ws:v_meter,rassam-ws:oh_mv_line,rassam-ws:lv_c_jnt,rassam-ws:pd_mdsub,rassam-ws:pole_let,rassam-ws:sectionalizer,rassam-ws:shulter,rassam-ws:light_line_dedicated,rassam-ws:lv_cpacitr,rassam-ws:pl_mdsub,rassam-ws:subscriber_cable,rassam-ws:power_exchange_c,rassam-ws:pt,rassam-ws:recloser,rassam-ws:street_light,rassam-ws:sec_relay,rassam-ws:sp_mv_cable,rassam-ws:sp_lv_cable,rassam-ws:rtu,rassam-ws:relay,rassam-ws:lighting_control_system,rassam-ws:light_pole,rassam-ws:surg_arstr,rassam-ws:hv_substat,rassam-ws:ug_lv_line"
-            format="image/png"
-            transparent="true"
-            tileSize={256}
+          <WMSTileLayerWithHeader
+            url={
+              "https://rassam.ir/rassam/api/public/geoserver/brp_webgis/ows?"
+            }
+            layers=""
+            headers={{
+              "x-api-key": "key=7edda2e523c03385d84c2908caaf2d52",
+            }}
           />
 
-          {/* {rassam - ws:lv_busbar } */}
-
+          {/* <GeoJSON data={data} /> */}
           <FeatureGroup ref={this.groupRef}>
             {this.state.locations.map((location) => (
               <Marker
@@ -94,7 +94,7 @@ export default class MapExample extends Component {
               </Marker>
             ))}
           </FeatureGroup>
-        </Map>
+        </MapContainer>
       </div>
     );
   }

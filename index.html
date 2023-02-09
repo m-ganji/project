@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-      <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="../node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="../node_modules/leaflet-wms-header/index.js"></script>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1"
+    />
     <meta name="theme-color" content="#000000" />
+    <script>
+      XMLHttpRequest.prototype.origOpen = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function () {
+        this.origOpen.apply(this, arguments);
+        this.setRequestHeader("X-TOKEN", "the token");
+      };
+    </script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -29,6 +41,7 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/index.js"></script>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

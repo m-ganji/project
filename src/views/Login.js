@@ -3,40 +3,43 @@ import logo from "../assets/images/logo_login.png";
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import { Button } from "reactstrap";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+// import { CommonLoading } from "react-loadingg";
+// import { ProgressBar } from "react-loader-spinner";
+// import {  } from "react-loader-spinner";
 
 export default function Login() {
-
   const navigateTo = useNavigate();
 
   const [token, setToken] = useState("");
   function onChange(value) {
-    console.log("Captcha value:", value);
-    setToken(value)
+    setToken(value);
   }
 
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
+  // const [success, setSuccess] = useState(false);
   function handleLogin() {
-
     var data = `username=${user}&password=${pass}&grecaptcha=${token}`;
-
     var config = {
       method: "post",
       url: "https://rassam-pars.ir/rassam/api/public/session",
       data: data,
     };
-
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         if (JSON.stringify(response.data.result) == "true") {
-          localStorage.setItem('cookie', JSON.stringify(response.data.cookie));
-          navigateTo('/map')
+    //       (res) => {
+    //   setPokemon(res.data.results);
+    // })
+          // setSuccess((current) => !current);
+          // console.log(success);
+          localStorage.setItem("cookie", JSON.stringify(response.data.cookie));
+          navigateTo("/map");
         } else {
-          toast.error('!نام کاربری یا رمز عبور درست نیست', {
+          toast.error("!نام کاربری یا رمز عبور درست نیست", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -52,13 +55,13 @@ export default function Login() {
         console.log(error);
       });
   }
-  const handleChangeUsername = (event) => {
+
+  const changeUsernameHandler = (event) => {
     console.log(event.target.value);
     setUser(event.target.value);
     // setPass(event.target.value);
   };
-
-  const handleChangePassword = (event) => {
+  const changePasswordHandler = (event) => {
     console.log(event.target.value);
     setPass(event.target.value);
     // setPass(event.target.value);
@@ -80,7 +83,7 @@ export default function Login() {
             placeholder="نام کاربری"
             // autocomplete="off"
             height={200}
-            onChange={handleChangeUsername}
+            onChange={changeUsernameHandler}
           />
           <input
             name="password"
@@ -90,14 +93,15 @@ export default function Login() {
             id="password"
             placeholder="کلمه عبور"
             // autocomplete="off"
-            onChange={handleChangePassword}
+            onChange={changePasswordHandler}
           />
           <div className="captcha w-75">
             <ReCAPTCHA
               sitekey="6LfnFRgiAAAAAGbcWS-LcYmgftG-Ws-6DwALFQ8u"
               onChange={onChange}
-            // className="mb-2 g-recaptcha w-100"
+              // className="mb-2 g-recaptcha w-100"
             />
+            {/* <CommonLoading /> */}
           </div>
           <Button
             color="warning"
@@ -107,7 +111,7 @@ export default function Login() {
             }}
           >
             ورود به سیستم{" "}
-          </Button >
+          </Button>
           <ToastContainer
             position="top-center"
             autoClose={5000}
@@ -127,6 +131,6 @@ export default function Login() {
           <p className="mb-5 textbelow">شرکت بهینه رسام پارس</p>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
