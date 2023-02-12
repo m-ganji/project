@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import rollupNodePolyFill from 'rollup-plugin-node-polyfills'
 import NodeGlobalsPolyfillPlugin from '@esbuild-plugins/node-globals-polyfill'
+import mkcert from 'vite-plugin-mkcert'
+
 
 export default () => {
   return defineConfig({
@@ -13,6 +15,7 @@ export default () => {
     },
     server: {
       port: 3000,
+      https: true,
       proxy: 'https://pixinvent.com/',
       cors: {
         origin: ['https://pixinvent.com/', 'http://localhost:3000'],
@@ -20,6 +23,7 @@ export default () => {
         allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
       }
     },
+  plugins: [ mkcert() ],
     css: {
       preprocessorOptions: {
         scss: {

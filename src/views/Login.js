@@ -6,11 +6,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
+
 // import { CommonLoading } from "react-loadingg";
 // import { ProgressBar } from "react-loader-spinner";
 // import {  } from "react-loader-spinner";
 
 export default function Login() {
+
   const navigateTo = useNavigate();
 
   const [token, setToken] = useState("");
@@ -61,6 +63,7 @@ export default function Login() {
     setUser(event.target.value);
     // setPass(event.target.value);
   };
+  
   const changePasswordHandler = (event) => {
     console.log(event.target.value);
     setPass(event.target.value);
