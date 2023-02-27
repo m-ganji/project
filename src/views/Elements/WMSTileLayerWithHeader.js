@@ -6,6 +6,11 @@ import {
 import { TileLayer } from "leaflet";
 
 async function fetchImage(url, callback, headers, abort) {
+  //
+  console.log(headers);
+  document.cookie = "username=John Doe";
+
+  //
   const controller = new AbortController();
   const signal = controller.signal;
   if (abort) {
@@ -19,6 +24,7 @@ async function fetchImage(url, callback, headers, abort) {
     mode: "cors",
     signal: signal,
   });
+
   const blob = await f.blob();
   callback(blob);
 }

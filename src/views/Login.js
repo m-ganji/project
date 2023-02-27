@@ -33,9 +33,9 @@ export default function Login() {
     axios(config)
       .then(function (response) {
         if (JSON.stringify(response.data.result) == "true") {
-    //       (res) => {
-    //   setPokemon(res.data.results);
-    // })
+          //       (res) => {
+          //   setPokemon(res.data.results);
+          // })
           // setSuccess((current) => !current);
           // console.log(success);
           localStorage.setItem("cookie", JSON.stringify(response.data.cookie));
@@ -63,7 +63,7 @@ export default function Login() {
     setUser(event.target.value);
     // setPass(event.target.value);
   };
-  
+
   const changePasswordHandler = (event) => {
     console.log(event.target.value);
     setPass(event.target.value);
@@ -102,7 +102,7 @@ export default function Login() {
             <ReCAPTCHA
               sitekey="6LfnFRgiAAAAAGbcWS-LcYmgftG-Ws-6DwALFQ8u"
               onChange={onChange}
-              // className="mb-2 g-recaptcha w-100"
+            // className="mb-2 g-recaptcha w-100"
             />
             {/* <CommonLoading /> */}
           </div>
