@@ -32,6 +32,9 @@ export default function Login() {
     };
     axios(config)
       .then(function (response) {
+        console.log(
+          response
+        );
         if (JSON.stringify(response.data.result) == "true") {
           //       (res) => {
           //   setPokemon(res.data.results);

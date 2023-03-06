@@ -6,6 +6,7 @@ import {
   Popup,
   FeatureGroup,
   WMSTileLayer,
+  ScaleControl
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 // import { WMSTileLayerWithHeader } from "./WMSTileLayerWithHeader";
@@ -61,15 +62,61 @@ export default class MapExample extends Component {
     return (
       <div>
         <MapContainer
-          center={{ lat: 31.515923503234955, lng: 50.8202975353157 }}
-          zoom={12}
+          center={{ lat: 32.3274, lng: 50.8650 }}
+          zoom={11}
           ref={this.mapRef}
+          maxZoom={30}
         >
+          <ScaleControl position="bottomleft" />
           <TileLayer
-            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            maxZoom={30}
           />
-          <WMSTileLayer
+          {/* <WMSTileLayer
+            url="http://localhost:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:oh_lv_line,rassam-ws:oh_mv_line,rassam-ws:pl_mdsub,rassam-ws:sp_lv_cable,rassam-ws:subscriber_cable,rassam-ws:ug_lv_line,rassam-ws:pow_distr_rigo_boundary,rassam-ws:hv_substat,rassam-ws:no_subscribers"
+            format="image/png"
+            transparent="true"
+          /> */}
+          {/* PROBLEM rassam-ws:pd_mdsub */}
+          {/* <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:pow_distr_rigo_boundary"
+            format="image/png"
+            transparet="true"
+          /> */}
+          {/* <WMSTileLayer
+            url="http://localhost:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:no_subscribers"
+            format="image/png"
+            transparent="true"
+          /> */}
+          {/* <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:pow_distr_rigo_boundary"
+            format="image/png"
+            transparet="true"
+          /> */}
+          {/* <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:pow_distr_rigo_boundary"
+            format="image/png"
+            transparet="true"
+          /> */}
+          {/* <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:hv_substat"
+            format="image/png"
+            transparent="true"
+          /> */}
+          {/* <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:pow_distr_rigo_boundary"
+            format="image/png"
+            transparent="true"
+          /> */}
+          {/* <WMSTileLayer
             url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
             layers="rassam-ws:pow_distr_rigo_boundary"
             format="image/png"
@@ -77,10 +124,58 @@ export default class MapExample extends Component {
           />
           <WMSTileLayer
             url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
-            layers="rassam-ws:pow_distr_rigo_boundary"
+            layers="rassam-ws:oh_lv_line"
             format="image/png"
             transparent="true"
           />
+          <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:no_subscribers"
+            format="image/png"
+            transparent="true"
+          />
+          <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:oh_mv_line"
+            format="image/png"
+            transparent="true"
+          />
+          <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:pd_mdsub"
+            format="image/png"
+            transparent="true"
+          />
+          <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:pl_mdsub"
+            format="image/png"
+            transparent="true"
+          />
+          <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:sp_lv_cable"
+            format="image/png"
+            transparent="true"
+          />
+          <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:subscriber_cable"
+            format="image/png"
+            transparent="true"
+          />
+          <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:ug_lv_line"
+            format="image/png"
+            transparent="true"
+          />
+          <WMSTileLayer
+            url="http://10.26.106.232:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:hv_substat"
+            format="image/png"
+            transparent="true"
+          /> */}
           <FeatureGroup ref={this.groupRef}>
             {this.state.locations.map((location) => (
               <Marker

@@ -13,7 +13,7 @@ export default () => {
       global: 'globalThis'
     },
     server: {
-      port: 8080,
+      port: 8081,
       https: false,
       proxy: "http://10.26.106.232/",
       cors: {
