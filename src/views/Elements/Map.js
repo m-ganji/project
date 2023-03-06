@@ -6,11 +6,10 @@ import {
   Popup,
   FeatureGroup,
   WMSTileLayer,
-  ScaleControl
+  ScaleControl,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 // import { WMSTileLayerWithHeader } from "./WMSTileLayerWithHeader";
-
 
 export default class MapExample extends Component {
   constructor() {
@@ -56,22 +55,20 @@ export default class MapExample extends Component {
     map.fitBounds(group.getBounds());
   }
 
-
-
   render() {
     return (
       <div>
         <MapContainer
-          center={{ lat: 32.3274, lng: 50.8650 }}
+          center={{ lat: 32.3274, lng: 50.865 }}
           zoom={11}
           ref={this.mapRef}
-          maxZoom={30}
         >
           <ScaleControl position="bottomleft" />
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            maxZoom={30}
+            maxNativeZoom={19}
+            maxZoom={21}
           />
           {/* <WMSTileLayer
             url="http://localhost:8080/geoserver/rassam-ws/wms?"
