@@ -53,6 +53,7 @@ export default class MapExample extends Component {
     const map = this.mapRef.current.leafletElement;
     const group = this.groupRef.current.leafletElement;
     map.fitBounds(group.getBounds());
+    console.log("map, group");
   }
 
   render() {
@@ -62,19 +63,29 @@ export default class MapExample extends Component {
           center={{ lat: 32.3274, lng: 50.865 }}
           zoom={11}
           ref={this.mapRef}
+          maxNativeZoom={19}
+          maxZoom={24}
         >
           <ScaleControl position="bottomleft" />
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             maxNativeZoom={19}
-            maxZoom={21}
+            maxZoom={24}
           />
-          {/* <WMSTileLayer
+          <WMSTileLayer
             url="http://localhost:8080/geoserver/rassam-ws/wms?"
             layers="rassam-ws:oh_lv_line,rassam-ws:oh_mv_line,rassam-ws:pl_mdsub,rassam-ws:sp_lv_cable,rassam-ws:subscriber_cable,rassam-ws:ug_lv_line,rassam-ws:pow_distr_rigo_boundary,rassam-ws:hv_substat,rassam-ws:no_subscribers"
             format="image/png"
             transparent="true"
+            maxZoom={24}
+          />
+          {/* <WMSTileLayer
+            url="http://localhost:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:pd_mdsub"
+            format="image/png"
+            transparent="true"
+            maxZoom={24}
           /> */}
           {/* PROBLEM rassam-ws:pd_mdsub */}
           {/* <WMSTileLayer
