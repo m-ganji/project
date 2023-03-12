@@ -9,6 +9,8 @@ import {
   ScaleControl,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import CustomWMSLayer from './CustomWMSLayer'
+
 
 export default class MapExample extends Component {
   constructor() {
@@ -37,7 +39,27 @@ export default class MapExample extends Component {
             maxNativeZoom={19}
             maxZoom={24}
           />
-          <Marker position={this.position} eventHandlers={{
+          {/* <WMSTileLayer
+            url="http://localhost:8080/geoserver/rassam-ws/wms?"
+            layers="rassam-ws:oh_lv_line,rassam-ws:oh_mv_line,rassam-ws:pl_mdsub,rassam-ws:sp_lv_cable,rassam-ws:subscriber_cable,rassam-ws:ug_lv_line,rassam-ws:pow_distr_rigo_boundary,rassam-ws:hv_substat,rassam-ws:no_subscribers"
+            format="image/png"
+            transparent="true"
+            maxZoom={24}
+          /> */}
+          <CustomWMSLayer
+            layers={['rassam-ws:oh_lv_line,rassam-ws:oh_mv_line,rassam-ws:pl_mdsub,rassam-ws:sp_lv_cable,rassam-ws:subscriber_cable,rassam-ws:ug_lv_line,rassam-ws:pow_distr_rigo_boundary,rassam-ws:hv_substat,rassam-ws:no_subscribers']}
+            options={{
+              "format": "image/png",
+              "transparent": "true",
+              // "attribution": "<a href='https://ows.terrestris.de/'>terrestris</a>",
+              // "info_format": "text/html"
+              "maxZoom": "{24}",
+              "feature_count": "24"
+              // "property_name": "attr1,attr2,attr3,attr4,attr5"
+            }}
+            url="http://localhost:8080/geoserver/rassam-ws/wms?"
+          />
+          {/* <Marker position={this.position} eventHandlers={{
             click: (e) => {
               console.log('marker clicked', e)
             },
@@ -88,7 +110,7 @@ export default class MapExample extends Component {
             format="image/png"
             transparent="true"
             maxZoom={24}
-          />
+          /> */}
           {/* <WMSTileLayer
             url="http://localhost:8080/geoserver/rassam-ws/wms?"
             layers="rassam-ws:pd_mdsub"
