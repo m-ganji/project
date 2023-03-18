@@ -70,7 +70,7 @@ const Routes = [
     },
   },
   {
-    path: "/map",
+    path: "/Map",
     element: <MapLayout />,
     meta: {
       layout: "blank",
