@@ -1,4 +1,4 @@
-import React, { createRef, Component } from "react";
+import React, { createRef, Component, useEffect } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -10,6 +10,9 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import CustomWMSLayer from './CustomWMSLayer'
+import { CRS } from 'leaflet';
+import { useSelector } from "react-redux";
+
 
 
 export default class MapExample extends Component {
@@ -19,9 +22,16 @@ export default class MapExample extends Component {
     this.groupRef = createRef();
     // this.buttonSituation = useSelector((state) => state.layout.buttonSituation);
     this.position = [32.3274, 50.865]
-    this.state = {
-    };
+
+    // this.coordinates = useSelector((state) => state.layout.coordinates)
   }
+  // DummyView = () => {
+  //   const coordinates = useSelector((state) => state.layout.coordinates);
+  //   useEffect(() => {
+  //     console.log(coordinates);
+  //   }, [])
+  //   return null
+  // }
   render() {
     return (
       <div>
@@ -31,6 +41,7 @@ export default class MapExample extends Component {
           ref={this.mapRef}
           maxNativeZoom={19}
           maxZoom={24}
+        // crs={CRS.EPSG32639}
         >
           <ScaleControl position="bottomleft" sticky={true} />
           <TileLayer

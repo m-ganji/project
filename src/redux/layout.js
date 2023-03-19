@@ -36,6 +36,7 @@ export const layoutSlice = createSlice({
     contentWidth: themeConfig.layout.contentWidth,
     navbarColor: themeConfig.layout.navbar.backgroundColor,
     buttonSituation: "",
+    coordinates: [],
   },
   reducers: {
     handleRTL: (state, action) => {
@@ -70,6 +71,9 @@ export const layoutSlice = createSlice({
     handleButtonSituation: (state, action) => {
       state.buttonSituation = action.payload;
     },
+    handleCoordinates: (state, action) => {
+      state.coordinates = action.payload;
+    },
     handleMenuCollapsed: (state, action) => {
       state.menuCollapsed = action.payload;
       window.localStorage.setItem(
@@ -92,6 +96,7 @@ export const {
   handleContentWidth,
   handleButtonSituation,
   handleMenuCollapsed,
+  handleCoordinates,
 } = layoutSlice.actions;
 
 export default layoutSlice.reducer;

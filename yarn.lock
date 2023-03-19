@@ -2852,6 +2852,11 @@
     "rxjs" "^6.6.3"
     "typescript" "^2.9.2"
 
+"leaflet.utm@^1.0.0":
+  "integrity" "sha512-DKWz0mu0K3voaLt45w/2xRucHhFsBrMBgSJQETmO10ViGNG85etiT77KzRqJA7OBnKBL4GzUq3NHzlWixKLD+g=="
+  "resolved" "https://registry.npmjs.org/leaflet.utm/-/leaflet.utm-1.0.0.tgz"
+  "version" "1.0.0"
+
 "leaflet.wms@^0.2.0":
   "integrity" "sha512-mHcRuma69UjNEAf9OQybB9jSdzL7Ypz7NU66GV/aUI8i7ds/81J+FBdFDuv/zpldBqXsTZWZLK0r49UUIPCENQ=="
   "resolved" "https://registry.npmjs.org/leaflet.wms/-/leaflet.wms-0.2.0.tgz"
