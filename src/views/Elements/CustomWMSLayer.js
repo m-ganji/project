@@ -14,7 +14,7 @@ function CustomWMSLayer(props) {
     //         dispatch(handleCoordinates(coordinate1))
     //     }
     // });
-    console.log(coordinate1);
+    // console.log(coordinate1);
     const { url, options, layers } = props;
     const [result, setResult] = useState([])
     const [x, setX] = useState("")
@@ -35,7 +35,7 @@ function CustomWMSLayer(props) {
             setBbox(map.getBounds().toBBoxString())
         },
         mousemove(e) {
-            setCoordinate1(e.latlng.utm())
+            // setCoordinate1(e.latlng.utm())
             // if (coordinate1) {
             //     dispatch(handleCoordinates(coordinate1))
             // }
