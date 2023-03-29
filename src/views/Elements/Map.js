@@ -12,6 +12,8 @@ import "leaflet/dist/leaflet.css";
 import CustomWMSLayer from './CustomWMSLayer'
 import { CRS } from 'leaflet';
 import { useSelector } from "react-redux";
+import { useMapEvents } from "react-leaflet";
+
 
 
 
@@ -22,16 +24,7 @@ export default class MapExample extends Component {
     this.groupRef = createRef();
     // this.buttonSituation = useSelector((state) => state.layout.buttonSituation);
     this.position = [32.3274, 50.865]
-
-    // this.coordinates = useSelector((state) => state.layout.coordinates)
   }
-  // DummyView = () => {
-  //   const coordinates = useSelector((state) => state.layout.coordinates);
-  //   useEffect(() => {
-  //     console.log(coordinates);
-  //   }, [])
-  //   return null
-  // }
   render() {
     return (
       <div>
@@ -56,7 +49,7 @@ export default class MapExample extends Component {
               "format": "image/png",
               "transparent": "true",
               "maxZoom": "{24}",
-              "feature_count": "24",
+              "feature_count": "10",
               "info_format": "text/html"
             }}
             url="http://localhost:8080/geoserver/rassam-ws/wms?"

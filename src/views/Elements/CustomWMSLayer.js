@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMap, useMapEvents } from "react-leaflet";
 import * as WMS from "leaflet.wms";
 import axios from 'axios';
@@ -7,12 +7,14 @@ import { useDispatch } from 'react-redux';
 import { handleCoordinates } from '../../redux/layout';
 
 function CustomWMSLayer(props) {
-    const dispatch = useDispatch();
-    const [coordinate1, setCoordinate1] = useState()
-    console.log(coordinate1)
-    // if (coordinate1) {
-    //     dispatch(handleCoordinates(coordinate1))
-    // }
+    const [coordinate1, setCoordinate1] = useState();
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     if (coordinate1) {
+    //         dispatch(handleCoordinates(coordinate1))
+    //     }
+    // });
+    console.log(coordinate1);
     const { url, options, layers } = props;
     const [result, setResult] = useState([])
     const [x, setX] = useState("")
@@ -33,7 +35,6 @@ function CustomWMSLayer(props) {
             setBbox(map.getBounds().toBBoxString())
         },
         mousemove(e) {
-            // console.log(e.latlng.utm())
             setCoordinate1(e.latlng.utm())
             // if (coordinate1) {
             //     dispatch(handleCoordinates(coordinate1))

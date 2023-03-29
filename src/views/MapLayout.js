@@ -7,8 +7,8 @@ import { useMap, useMapEvents } from "react-leaflet";
 
 
 export default function MapLayout() {
-  const coordinates = useSelector((state) => state.layout.coordinates);
-  console.log(coordinates)
+  // const coordinates = useSelector((state) => state.layout.coordinates);
+  // console.log(coordinates);
 
   return (
     <div>
