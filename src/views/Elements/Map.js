@@ -14,36 +14,10 @@ import { CRS } from 'leaflet';
 import { useSelector } from "react-redux";
 import { useMapEvents } from "react-leaflet";
 
-// function MyComponent() {
-//   // const dispatch = useDispatch();
-
-
-//   const mapX = useMapEvents({
-//     mousemove(e) {
-//       // setCoordinate1(e.latlng.utm())
-//       // console.log(e.latlng)
-//       // e.latlng = cordinateOfX
-//       // useEffect(() => {
-//       //   dispatch(handleCoordinates(e.latlng.utm()))
-//       // }, []);
-//       // console.log(e.latlng)
-//       // setCoordinate1(e.latlng)
-//     },
-//   })
-//   return null
-// }
-
 export default function MapExample() {
   const position = [32.3274, 50.865];
   const mapRef = createRef();
   const groupRef = createRef();
-
-  // const position = [51.505, -0.09];
-  // const [map, setMap] = useState(null);
-
-  // const [coords, setCoords] = useState({});
-
-
 
   return (
     <div>
