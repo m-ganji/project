@@ -75,7 +75,7 @@ export default function MapLayout() {
           <MyComponent />
         </MapContainer>
       </div>
-      <p className="position-absolute top-100 start-100 translate-middle">
+      <p className="position-absolute top-70 start-100 translate-middle">
         {lat}
         <br></br>
         {lon}

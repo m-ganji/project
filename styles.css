@@ -339,8 +339,7 @@ tr:nth-child(even) {
   left: -30 !important;
 } */
 
-.top-100 {
-  /* top: 97% !important; */
+.top-70 {
   z-index: 100;
 }
 
@@ -348,15 +347,11 @@ tr:nth-child(even) {
   z-index: 10;
 }
 
-/* .start-100 {
-  left: 70% !important;
+.start-100 {
+  left: 90% !important;
+  top: 95%;
 }
 
-.top-100 {
-  top: 95% !important;
-} */
-
-p.position-absolute.top-100.start-100.translate-middle {
-  right: -10% !important;
-  bottom: -18% !important;
+.leaflet-control-attribution.leaflet-control {
+  display: none;
 }
