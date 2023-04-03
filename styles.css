@@ -338,3 +338,25 @@ tr:nth-child(even) {
   position: fixed;
   left: -30 !important;
 } */
+
+.top-100 {
+  /* top: 97% !important; */
+  z-index: 100;
+}
+
+.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+  z-index: 10;
+}
+
+/* .start-100 {
+  left: 70% !important;
+}
+
+.top-100 {
+  top: 95% !important;
+} */
+
+p.position-absolute.top-100.start-100.translate-middle {
+  right: -10% !important;
+  bottom: -18% !important;
+}

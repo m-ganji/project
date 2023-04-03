@@ -26,12 +26,14 @@ export default function MapLayout() {
   const groupRef = createRef();
 
   const [lat, setLat] = useState()
+  const [lon, setLon] = useState()
 
   function MyComponent() {
     const map = useMapEvents({
       mousemove(e) {
         console.log(e.latlng)
         setLat(e.latlng.lat)
+        setLon(e.latlng.lng)
       },
     })
     return null
@@ -53,7 +55,7 @@ export default function MapLayout() {
           {/* <MyComponent /> */}
           <ScaleControl position="bottomleft" sticky={true} />
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             maxNativeZoom={19}
             maxZoom={24}
@@ -71,13 +73,14 @@ export default function MapLayout() {
           />
           {/* PROBLEM rassam-ws:pd_mdsub */}
           <MyComponent />
-
         </MapContainer>
       </div>
-      <p>
+      <p className="position-absolute top-100 start-100 translate-middle">
         {lat}
+        <br></br>
+        {lon}
       </p>
-    </div>
+    </div >
   );
 }
 

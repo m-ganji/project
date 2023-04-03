@@ -26,10 +26,7 @@ function CustomWMSLayer(props) {
             setX(e.containerPoint.x)
             setY(e.containerPoint.y)
             setBbox(map.getBounds().toBBoxString())
-        },
-        mousemove(e) {
-            // console.log(e.latlng.utm())
-        },
+        }
     });
     return null;
 }
