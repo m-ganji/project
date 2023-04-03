@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
 import { MdHome } from "react-icons/md";
+import { AiFillSetting } from "react-icons/ai";
 import { handleButtonSituation } from "../../redux/layout";
 import { useDispatch } from "react-redux";
 // import { AiOutlineSearch } from "react-icons/ai";
@@ -36,8 +37,15 @@ export default function Drawer() {
             className="smallcircle d-flex justify-content-center align-items-center border-0"
             onClick={() => setIsOpenHome(!isOpenHome)}
           >
-
             <MdHome size="1.5em" />
+          </button>
+        )}
+        {isOpen && (
+          <button
+            className="smallcircle d-flex justify-content-center align-items-center border-0"
+          // onClick={() => setIsOpenHome(!isOpenHome)}
+          >
+            <AiFillSetting size="1.5em" />
           </button>
         )}
         {/* {isOpen && <button className='smallcircle d-flex justify-content-center align-items-center border-0'><AiOutlineSearch size="1.5em" /></button>} */}

@@ -14,6 +14,10 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import CustomWMSLayer from "./Elements/CustomWMSLayer.js";
+import "leaflet.utm";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import SplitButton from 'react-bootstrap/SplitButton';
 
 
 
@@ -25,15 +29,24 @@ export default function MapLayout() {
   const mapRef = createRef();
   const groupRef = createRef();
 
-  const [lat, setLat] = useState()
-  const [lon, setLon] = useState()
+  // const [lat, setLat] = useState()
+  // const [lon, setLon] = useState()
+  const [x, setX] = useState()
+  const [y, setY] = useState()
+
+  console.log(x)
+  console.log(y)
+
+  // const [utmSelected, setUTMSelected] = useState()
 
   function MyComponent() {
     const map = useMapEvents({
       mousemove(e) {
-        console.log(e.latlng)
-        setLat(e.latlng.lat)
-        setLon(e.latlng.lng)
+        // console.log(e.latlng.utm())
+        setX(e.latlng.utm().x)
+        setY(e.latlng.utm().y)
+        // setLat(e.latlng.lat)
+        // setLon(e.latlng.lng)
       },
     })
     return null
@@ -75,11 +88,7 @@ export default function MapLayout() {
           <MyComponent />
         </MapContainer>
       </div>
-      <p className="position-absolute top-70 start-100 translate-middle">
-        {lat}
-        <br></br>
-        {lon}
-      </p>
+      
     </div >
   );
 }
