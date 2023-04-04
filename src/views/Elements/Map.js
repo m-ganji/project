@@ -50,9 +50,6 @@ export default function MapExample() {
         />
         {/* PROBLEM rassam-ws:pd_mdsub */}
       </MapContainer>
-      {/* {
-        console.log(lat)
-      } */}
     </div>
   );
 }

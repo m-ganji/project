@@ -36,7 +36,8 @@ export const layoutSlice = createSlice({
     contentWidth: themeConfig.layout.contentWidth,
     navbarColor: themeConfig.layout.navbar.backgroundColor,
     buttonSituation: "",
-    coordinates: [],
+    isUTM: "",
+    isNotUTM: "",
   },
   reducers: {
     handleRTL: (state, action) => {
@@ -71,8 +72,11 @@ export const layoutSlice = createSlice({
     handleButtonSituation: (state, action) => {
       state.buttonSituation = action.payload;
     },
-    handleCoordinates: (state, action) => {
-      state.coordinates = action.payload;
+    handleUTMSituation: (state, action) => {
+      state.isUTM = action.payload;
+    },
+    handleNotUTMSituation: (state, action) => {
+      state.isNotUTM = action.payload;
     },
     handleMenuCollapsed: (state, action) => {
       state.menuCollapsed = action.payload;
@@ -95,8 +99,9 @@ export const {
   handleNavbarColor,
   handleContentWidth,
   handleButtonSituation,
+  handleUTMSituation,
+  handleNotUTMSituation,
   handleMenuCollapsed,
-  handleCoordinates,
 } = layoutSlice.actions;
 
 export default layoutSlice.reducer;

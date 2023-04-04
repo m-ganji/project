@@ -4,10 +4,8 @@ import * as WMS from "leaflet.wms";
 import axios from 'axios';
 import "leaflet.utm";
 import { useDispatch } from 'react-redux';
-import { handleCoordinates } from '../../redux/layout';
 
 function CustomWMSLayer(props) {
-    const [coordinate1, setCoordinate1] = useState();
     const { url, options, layers } = props;
     const [result, setResult] = useState([])
     const [x, setX] = useState("")

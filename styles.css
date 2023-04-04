@@ -348,7 +348,7 @@ tr:nth-child(even) {
 }
 
 .start-100 {
-  left: 90% !important;
+  left: 60% !important;
   top: 95%;
 }
 
@@ -359,7 +359,7 @@ tr:nth-child(even) {
 .popup-content {
   margin: auto;
   background: rgb(255, 255, 255);
-  width: 50%;
+  width: 25% !important;
   padding: 5px;
 }
 
@@ -402,4 +402,35 @@ tr:nth-child(even) {
 
 [data-popup='tooltip'].popup-overlay {
   background: transparent;
+}
+
+div#popup-1 {
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #1067c6 !important;
+}
+
+.btn-popup {
+  border-color: #1067c6 !important;
+  background-color: #1067C6 !important;
+  color: #f6f5f7 !important;
+}
+
+.top-70 {
+  z-index: 100;
+}
+
+.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+  z-index: 10;
+}
+
+.start-100 {
+  left: 95% !important;
+}
+
+p.position-absolute.top-70.start-100.translate-middle {
+  left: 95% !important;
+  color: #0a0909 !important;
 }

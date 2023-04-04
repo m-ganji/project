@@ -15,15 +15,15 @@ import {
 import "leaflet/dist/leaflet.css";
 import CustomWMSLayer from "./Elements/CustomWMSLayer.js";
 import "leaflet.utm";
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import SplitButton from 'react-bootstrap/SplitButton';
-
-
 
 export default function MapLayout() {
   // const coordinates = useSelector((state) => state.layout.coordinates);
   // console.log(coordinates);
+
+  const UTMSituation = useSelector((state) => state.layout.isUTM);
+  const NotUTMSituation = useSelector((state) => state.layout.isNotUTM);
+  console.log(UTMSituation, NotUTMSituation)
+
 
   const position = [32.3274, 50.865];
   const mapRef = createRef();
@@ -34,8 +34,8 @@ export default function MapLayout() {
   const [x, setX] = useState()
   const [y, setY] = useState()
 
-  console.log(x)
-  console.log(y)
+  // console.log(x)
+  // console.log(y)
 
   // const [utmSelected, setUTMSelected] = useState()
 
@@ -43,8 +43,8 @@ export default function MapLayout() {
     const map = useMapEvents({
       mousemove(e) {
         // console.log(e.latlng.utm())
-        setX(e.latlng.utm().x)
-        setY(e.latlng.utm().y)
+        setX(e.latlng.utm().x.toFixed(2))
+        setY(e.latlng.utm().y.toFixed(2))
         // setLat(e.latlng.lat)
         // setLon(e.latlng.lng)
       },
@@ -88,7 +88,11 @@ export default function MapLayout() {
           <MyComponent />
         </MapContainer>
       </div>
-      
+      <p className="position-absolute top-70 start-100 translate-middle">
+        {x}
+        <br></br>
+        {y}
+      </p>
     </div >
   );
 }
