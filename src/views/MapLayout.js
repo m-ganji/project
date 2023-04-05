@@ -42,7 +42,7 @@ export default function MapLayout() {
   function MyComponent() {
     const map = useMapEvents({
       mousemove(e) {
-        console.log(e)
+        console.log(e.latlng)
         setX(e.latlng.utm().x.toFixed(2))
         setY(e.latlng.utm().y.toFixed(2))
         // setLat(e.latlng.lat)
