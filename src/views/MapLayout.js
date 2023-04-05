@@ -14,6 +14,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import CustomWMSLayer from "./Elements/CustomWMSLayer.js";
 import "leaflet.utm";
+import { useSelector } from "react-redux";
 
 export default function MapLayout() {
   // const coordinates = useSelector((state) => state.layout.coordinates);
@@ -23,24 +24,27 @@ export default function MapLayout() {
   const mapRef = createRef();
   const groupRef = createRef();
 
-  // const [lat, setLat] = useState()
-  // const [lon, setLon] = useState()
+  const [lat, setLat] = useState()
+  const [lon, setLon] = useState()
   const [x, setX] = useState()
   const [y, setY] = useState()
 
-  // console.log(x)
-  // console.log(y)
 
   // const [utmSelected, setUTMSelected] = useState()
+
+  const systemSelector = useSelector(state => state.system.systemSelector)
+  const systemSelectorLatLon = useSelector(state => state.system.systemSelectorLatLon)
+  console.log("utm",systemSelector)
+  console.log("latlon",systemSelectorLatLon)
 
   function MyComponent() {
     const map = useMapEvents({
       mousemove(e) {
-        console.log(e.latlng)
+        // console.log(e.latlng)
         setX(e.latlng.utm().x.toFixed(2))
         setY(e.latlng.utm().y.toFixed(2))
-        // setLat(e.latlng.lat)
-        // setLon(e.latlng.lng)
+        setLat(e.latlng.lat)
+        setLon(e.latlng.lng)
       },
     })
     return null
@@ -82,11 +86,20 @@ export default function MapLayout() {
           <MyComponent />
         </MapContainer>
       </div>
-      <p className="position-absolute top-70 start-100 translate-middle">
-        {x}
-        <br></br>
-        {y}
-      </p>
+      {systemSelector && !systemSelectorLatLon &&
+        <p className="position-absolute top-70 start-100 translate-middle">
+          {x}
+          <br></br>
+          {y}
+        </p>
+      }
+      {systemSelectorLatLon && !systemSelector &&
+        <p className="position-absolute top-70 start-100 translate-middle">
+          {lat}
+          <br></br>
+          {lon}
+        </p>
+      }
     </div >
   );
 }

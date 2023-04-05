@@ -5,6 +5,8 @@ import { MdHome } from "react-icons/md";
 import { AiFillSetting } from "react-icons/ai";
 import { handleButtonSituation, handleNotUTMSituation, handleUTMSituation } from "../../redux/layout";
 import Popup from 'reactjs-popup';
+import { useDispatch } from "react-redux";
+import { SystemHandler, SystemHandlerLatLon } from "../../redux/system";
 
 export default function Drawer() {
   const [isOpen, setOpen] = useState(false);
@@ -15,16 +17,22 @@ export default function Drawer() {
   });
 
 
-  const [UTM, setUTM] = useState(false)
+  const [UTM, setUTM] = useState(true)
   const [notUTM, setNotUTM] = useState(false)
+  const dispatch = useDispatch()
+  dispatch(SystemHandler(UTM))
+  dispatch(SystemHandlerLatLon(notUTM))
+
 
   function getSelectedValue(event) {
     console.log("Value: " + event.target.value);
     if (event.target.value === "UTM") {
       setUTM((current) => !current)
+      setNotUTM((current) => !current)
     }
     if (event.target.value === "Lat Lon") {
       setNotUTM((current) => !current)
+      setUTM((current) => !current)
     }
   }
 
