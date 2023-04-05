@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import Drawer from "./Elements/Drawer.js";
 // import MapExample from "./Elements/Map.js";
 import { useMap, useMapEvents } from "react-leaflet";
@@ -19,11 +18,6 @@ import "leaflet.utm";
 export default function MapLayout() {
   // const coordinates = useSelector((state) => state.layout.coordinates);
   // console.log(coordinates);
-
-  const UTMSituation = useSelector((state) => state.layout.isUTM);
-  const NotUTMSituation = useSelector((state) => state.layout.isNotUTM);
-  console.log(UTMSituation, NotUTMSituation)
-
 
   const position = [32.3274, 50.865];
   const mapRef = createRef();

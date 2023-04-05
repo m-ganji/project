@@ -16,9 +16,13 @@ function CustomWMSLayer(props) {
         url,
         options
     );
-    for (let name of layers) {
-        sourceLayer.getLayer(name).addTo(map)
-    }
+    useEffect(() => {
+        for (let name of layers) {
+            console.log('here', name)
+            sourceLayer.getLayer(name).addTo(map)
+        }
+    }, [])
+
     const mapX = useMapEvents({
         click(e) {
             setX(e.containerPoint.x)

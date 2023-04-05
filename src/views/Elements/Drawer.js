@@ -4,7 +4,6 @@ import { useState } from "react";
 import { MdHome } from "react-icons/md";
 import { AiFillSetting } from "react-icons/ai";
 import { handleButtonSituation, handleNotUTMSituation, handleUTMSituation } from "../../redux/layout";
-import { useDispatch } from "react-redux";
 import Popup from 'reactjs-popup';
 
 export default function Drawer() {
@@ -12,7 +11,7 @@ export default function Drawer() {
   const [isOpenHome, setIsOpenHome] = useState(false);
 
   useEffect(() => {
-    dispatch(handleButtonSituation(isOpenHome));
+    // dispatch(handleButtonSituation(isOpenHome));
   });
 
 
@@ -28,9 +27,6 @@ export default function Drawer() {
       setNotUTM((current) => !current)
     }
   }
-  const dispatch = useDispatch();
-  dispatch(handleUTMSituation(UTM));
-  dispatch(handleNotUTMSituation(notUTM));
 
   // console.log("utm is", UTM)
   // console.log("notutm is", notUTM)
