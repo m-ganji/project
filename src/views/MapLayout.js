@@ -34,26 +34,33 @@ export default function MapLayout() {
 
   const systemSelector = useSelector(state => state.system.systemSelector)
   const systemSelectorLatLon = useSelector(state => state.system.systemSelectorLatLon)
-  console.log("utm",systemSelector)
-  console.log("latlon",systemSelectorLatLon)
 
   function MyComponent() {
     const map = useMapEvents({
       mousemove(e) {
-        // console.log(e.latlng)
-        setX(e.latlng.utm().x.toFixed(2))
-        setY(e.latlng.utm().y.toFixed(2))
-        setLat(e.latlng.lat)
-        setLon(e.latlng.lng)
+        
+        setX(convertToPersianNumber(e.latlng.utm().x.toFixed(2)))
+        setY(convertToPersianNumber(e.latlng.utm().y.toFixed(2)))
+        setLat(convertToPersianNumber(e.latlng.lat.toFixed(7)))
+        setLon(convertToPersianNumber(e.latlng.lng.toFixed(7)))
       },
     })
     return null
   }
 
+  var persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+  var persianMap = persianDigits.split("");
+
+  function convertToPersianNumber(input) {
+    return input.replace(/\d/g, function (m) {
+      return persianMap[parseInt(m)];
+    });
+  }
+
+
   return (
     <div>
       <Drawer />
-      {/* <MapExample /> */}
       <div>
         <MapContainer
           center={{ lat: 32.3274, lng: 50.865 }}
@@ -63,10 +70,8 @@ export default function MapLayout() {
           maxZoom={24}
         // crs={CRS.EPSG32639}
         >
-          {/* <MyComponent /> */}
           <ScaleControl position="bottomleft" sticky={true} />
           <TileLayer
-            // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             maxNativeZoom={19}
             maxZoom={24}

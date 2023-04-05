@@ -35,7 +35,6 @@ export const layoutSlice = createSlice({
     menuHidden: themeConfig.layout.menu.isHidden,
     contentWidth: themeConfig.layout.contentWidth,
     navbarColor: themeConfig.layout.navbar.backgroundColor,
-    buttonSituation: "",
     isUTM: "",
     isNotUTM: "",
   },
@@ -69,9 +68,6 @@ export const layoutSlice = createSlice({
     handleContentWidth: (state, action) => {
       state.contentWidth = action.payload;
     },
-    handleButtonSituation: (state, action) => {
-      state.buttonSituation = action.payload;
-    },
     handleUTMSituation: (state, action) => {
       state.isUTM = action.payload;
     },
@@ -98,7 +94,6 @@ export const {
   handleFooterType,
   handleNavbarColor,
   handleContentWidth,
-  handleButtonSituation,
   handleUTMSituation,
   handleNotUTMSituation,
   handleMenuCollapsed,

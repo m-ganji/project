@@ -18,7 +18,7 @@ function CustomWMSLayer(props) {
     );
     useEffect(() => {
         for (let name of layers) {
-            console.log('here', name)
+            // console.log('here', name)
             sourceLayer.getLayer(name).addTo(map)
         }
     }, [])

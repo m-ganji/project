@@ -1,3 +1,5 @@
+@import url(//db.onlinewebfonts.com/c/5c53f1a72f61b5b51e2ea79a22ebc38b?family=IRANSansWeb(FaNum));
+
 @font-face {
   font-family: IRANSansX;
   font-style: normal;
@@ -75,7 +77,7 @@ body,
 #root,
 .wrapper {
   /* height: 100%; */
-  font-family: IRANSansX;
+  font-family: IRANSansX !important;
 }
 
 .menu {
@@ -124,22 +126,10 @@ body,
   width: 100%;
 }
 
-/* img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive {
-  display: none;
-} */
-
-/* .leaflet-pane.leaflet-shadow-pane {
-  display: none;
-} */
-
 .menu {
   position: absolute;
   z-index: 1000;
 }
-
-/* .leaflet-container.leaflet-touch.leaflet-retina.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
-  position: relative;
-} */
 
 .leaflet-control-zoom.leaflet-bar.leaflet-control {
   display: none;
@@ -433,4 +423,16 @@ div#popup-1 {
 p.position-absolute.top-70.start-100.translate-middle {
   left: 95% !important;
   color: #0a0909 !important;
+}
+
+p.position-absolute.top-70.start-100.translate-middle {
+  left: 97.3% !important;
+}
+
+.modal_popup {
+  padding: 30px;
+}
+
+p.position-absolute.top-70.start-100.translate-middle {
+  text-align: right;
 }

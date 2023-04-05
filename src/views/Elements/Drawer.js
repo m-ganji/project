@@ -3,26 +3,25 @@ import Hamburger from "hamburger-react";
 import { useState } from "react";
 import { MdHome } from "react-icons/md";
 import { AiFillSetting } from "react-icons/ai";
-import { handleButtonSituation, handleNotUTMSituation, handleUTMSituation } from "../../redux/layout";
 import Popup from 'reactjs-popup';
 import { useDispatch } from "react-redux";
 import { SystemHandler, SystemHandlerLatLon } from "../../redux/system";
+import { handleButtonSituation } from "../../redux/system";
 
 export default function Drawer() {
   const [isOpen, setOpen] = useState(false);
   const [isOpenHome, setIsOpenHome] = useState(false);
 
+  console.log(isOpenHome)
+  const dispatch = useDispatch()
   useEffect(() => {
-    // dispatch(handleButtonSituation(isOpenHome));
+    dispatch(handleButtonSituation(isOpenHome));
   });
-
 
   const [UTM, setUTM] = useState(true)
   const [notUTM, setNotUTM] = useState(false)
-  const dispatch = useDispatch()
   dispatch(SystemHandler(UTM))
   dispatch(SystemHandlerLatLon(notUTM))
-
 
   function getSelectedValue(event) {
     console.log("Value: " + event.target.value);
@@ -36,10 +35,7 @@ export default function Drawer() {
     }
   }
 
-  // console.log("utm is", UTM)
-  // console.log("notutm is", notUTM)
-
-  // dispatch(handleButtonSituation(isOpenHome));
+  dispatch(handleButtonSituation(isOpenHome));
 
   return (
     <div className="menu ">
@@ -67,7 +63,7 @@ export default function Drawer() {
             trigger={<button
               className="smallcircle d-flex justify-content-center align-items-center border-0"
               title="تنظیمات سیستم مختصات"
-            // onClick={() => setIsOpenHome(!isOpenHome)}
+              onClick={() => setIsOpenHome(!isOpenHome)}
             >
               <AiFillSetting size="1.5em" />
             </button>}
@@ -77,12 +73,12 @@ export default function Drawer() {
             {close => (
               <div className="modal_popup" tabindex="-1" role="dialog">
                 <form className="d-flex justify-content-center mb-2 gap-1" action="#">
-                  <label for="lang">نوع سیستم مختصات</label>
                   <select name="languages" id="lang" onClick={getSelectedValue} >
-                    <option selected disabled>--یک گزینه را انتخاب کنید--</option>
-                    <option value="UTM">UTM</option>
+                    {/* <option selected disabled>--یک گزینه را انتخاب کنید--</option> */}
+                    <option value="UTM" selected>UTM</option>
                     <option value="Lat Lon">Lat Lon</option>
                   </select>
+                  <label for="lang">نوع سیستم مختصات</label>
                 </form>
                 <div className="d-flex justify-content-center gap-1" role="document">
                   <button type="button" className="btn btn-popup" onClick={
