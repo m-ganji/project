@@ -19,12 +19,12 @@ export default function OpenLayers() {
                 new TileLayer({
                     source: new TileWMS({
                         url: 'http://localhost:8080/geoserver/rassam-ws/wms?',
-                        params: { 'LAYERS': 'rassam-ws:oh_lv_line' },
+                        params: {
+                            'LAYERS': 'rassam-ws:pow_distr_rigo_boundary' },
                         serverType: 'geoserver',
                     }),
                 })
             ],
-
             view: new View({
                 center: fromLonLat([51.225720, 31.347616]),
                 zoom: 6
@@ -33,8 +33,3 @@ export default function OpenLayers() {
     });
     return <div className="map" ref={mapRef} />;
 };
-
-
-
-
-
