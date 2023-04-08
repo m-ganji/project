@@ -436,3 +436,15 @@ p.position-absolute.top-70.start-100.translate-middle {
 p.position-absolute.top-70.start-100.translate-middle {
   text-align: right;
 }
+
+html,
+body,
+form {
+  margin: 0;
+  padding: 0;
+}
+
+.map {
+  width: 100%;
+  height: 100vh;
+}
