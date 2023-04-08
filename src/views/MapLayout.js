@@ -17,20 +17,14 @@ import "leaflet.utm";
 import { useSelector } from "react-redux";
 
 export default function MapLayout() {
-  // const coordinates = useSelector((state) => state.layout.coordinates);
-  // console.log(coordinates);
-
+  
   const position = [32.3274, 50.865];
   const mapRef = createRef();
-  const groupRef = createRef();
 
   const [lat, setLat] = useState()
   const [lon, setLon] = useState()
   const [x, setX] = useState()
   const [y, setY] = useState()
-
-
-  // const [utmSelected, setUTMSelected] = useState()
 
   const systemSelector = useSelector(state => state.system.systemSelector)
   const systemSelectorLatLon = useSelector(state => state.system.systemSelectorLatLon)
@@ -38,7 +32,6 @@ export default function MapLayout() {
   function MyComponent() {
     const map = useMapEvents({
       mousemove(e) {
-        
         setX(convertToPersianNumber(e.latlng.utm().x.toFixed(2)))
         setY(convertToPersianNumber(e.latlng.utm().y.toFixed(2)))
         setLat(convertToPersianNumber(e.latlng.lat.toFixed(7)))
@@ -57,18 +50,18 @@ export default function MapLayout() {
     });
   }
 
+  console.log(systemSelector, systemSelectorLatLon)
 
   return (
     <div>
       <Drawer />
       <div>
         <MapContainer
-          center={{ lat: 32.3274, lng: 50.865 }}
+          center={position}
           zoom={11}
           ref={mapRef}
           maxNativeZoom={19}
           maxZoom={24}
-        // crs={CRS.EPSG32639}
         >
           <ScaleControl position="bottomleft" sticky={true} />
           <TileLayer

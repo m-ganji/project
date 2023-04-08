@@ -12,7 +12,6 @@ export default function Drawer() {
   const [isOpen, setOpen] = useState(false);
   const [isOpenHome, setIsOpenHome] = useState(false);
 
-  console.log(isOpenHome);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(handleButtonSituation(isOpenHome));
@@ -20,11 +19,16 @@ export default function Drawer() {
 
   const [UTM, setUTM] = useState(true);
   const [notUTM, setNotUTM] = useState(false);
-  dispatch(SystemHandler(UTM));
-  dispatch(SystemHandlerLatLon(notUTM));
+  useEffect(() => {
+    dispatch(SystemHandler(UTM));
+    dispatch(SystemHandlerLatLon(notUTM));
+  });
+
 
   function getSelectedValue(event) {
     console.log("Value: " + event.target.value);
+    console.log(event.target)
+
     if (event.target.value === "UTM") {
       setUTM((current) => !current);
       setNotUTM((current) => !current);
@@ -35,7 +39,9 @@ export default function Drawer() {
     }
   }
 
-  dispatch(handleButtonSituation(isOpenHome));
+  useEffect(() => {
+    dispatch(handleButtonSituation(isOpenHome));
+  });
 
   return (
     <div className="menu ">
@@ -73,21 +79,18 @@ export default function Drawer() {
             nested
           >
             {(close) => (
-              <div className="modal_popup" tabindex="-1" role="dialog">
+              <div className="modal_popup" tabIndex="-1" role="dialog">
                 <form
                   className="d-flex justify-content-center mb-2 gap-1"
                   action="#"
                 >
-                  <select name="languages" id="lang" onClick={getSelectedValue}>
-                    <option selected disabled>
-                      --یک گزینه را انتخاب کنید--
-                    </option>
-                    <option value="UTM" selected>
+                  <select name="system-coords" onChange={getSelectedValue} defaultValue={'DEFAULT'}>
+                    <option value="DEFAULT" >
                       UTM
                     </option>
                     <option value="Lat Lon">Lat Lon</option>
                   </select>
-                  <label for="lang">نوع سیستم مختصات</label>
+                  <label htmlFor="lang">نوع سیستم مختصات</label>
                 </form>
                 <div
                   className="d-flex justify-content-center gap-1"
