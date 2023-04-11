@@ -7,10 +7,11 @@ import { fromLonLat } from "ol/proj";
 import OSM from "ol/source/OSM";
 import TileWMS from 'ol/source/TileWMS.js';
 
+
 export default function OpenLayers() {
     const mapRef = useRef();
     useEffect(() => {
-        new Map({
+        const map = new Map({
             target: mapRef.current,
             layers: [
                 new TileLayer({
@@ -28,8 +29,15 @@ export default function OpenLayers() {
             view: new View({
                 center: fromLonLat([51.225720, 31.347616]),
                 zoom: 6
-            })
+            }),
         });
+        console.log(map)
+        map.on('pointermove', function (event) {
+            console.log(event)
+            const type = map.hasFeatureAtPixel(event.pixel) ? 'pointer' : 'inherit';
+            map.getViewport().style.cursor = type;
+        });
+
     });
     return <div className="map" ref={mapRef} />;
 };
