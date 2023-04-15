@@ -4,9 +4,11 @@ import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import { fromLonLat } from "ol/proj";
+import { toLonLat } from "ol/proj";
 import OSM from "ol/source/OSM";
 import TileWMS from 'ol/source/TileWMS.js';
-
+import MousePosition from 'ol/control/MousePosition';
+import { createStringXY } from 'ol/coordinate.js';
 
 export default function OpenLayers() {
     const mapRef = useRef();
@@ -21,7 +23,8 @@ export default function OpenLayers() {
                     source: new TileWMS({
                         url: 'http://localhost:8080/geoserver/rassam-ws/wms?',
                         params: {
-                            'LAYERS': 'rassam-ws:pow_distr_rigo_boundary' },
+                            'LAYERS': 'rassam-ws:pow_distr_rigo_boundary'
+                        },
                         serverType: 'geoserver',
                     }),
                 })
@@ -31,13 +34,12 @@ export default function OpenLayers() {
                 zoom: 6
             }),
         });
-        console.log(map)
-        map.on('pointermove', function (event) {
-            console.log(event)
-            const type = map.hasFeatureAtPixel(event.pixel) ? 'pointer' : 'inherit';
-            map.getViewport().style.cursor = type;
-        });
-
+        map.addControl(
+            new MousePosition({
+                projection: 'EPSG:4326',
+                coordinateFormat: createStringXY(4),
+            })
+        );
     });
     return <div className="map" ref={mapRef} />;
 };
