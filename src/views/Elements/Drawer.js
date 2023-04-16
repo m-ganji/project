@@ -86,9 +86,9 @@ export default function Drawer() {
                 >
                   <select name="system-coords" onChange={getSelectedValue} defaultValue={'DEFAULT'}>
                     <option value="DEFAULT" >
-                      UTM
+                      Lat Lon
                     </option>
-                    <option value="Lat Lon">Lat Lon</option>
+                    <option value="daraje">درجه</option>
                   </select>
                   <label htmlFor="lang">نوع سیستم مختصات</label>
                 </form>

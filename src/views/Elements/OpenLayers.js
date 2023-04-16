@@ -9,15 +9,20 @@ import OSM from "ol/source/OSM";
 import TileWMS from 'ol/source/TileWMS.js';
 import MousePosition from 'ol/control/MousePosition';
 import { createStringXY } from 'ol/coordinate.js';
+import { FullScreen, defaults as defaultControls } from 'ol/control.js';
+import { toStringHDMS } from 'ol/coordinate.js';
+
 
 export default function OpenLayers() {
     const mapRef = useRef();
     useEffect(() => {
         const map = new Map({
+            controls: defaultControls().extend([new FullScreen()]),
             target: mapRef.current,
             layers: [
                 new TileLayer({
-                    source: new OSM()
+                    source: new OSM(),
+                    projection: 'EPSG:32639',
                 }),
                 new TileLayer({
                     source: new TileWMS({
@@ -36,10 +41,19 @@ export default function OpenLayers() {
         });
         map.addControl(
             new MousePosition({
+                coordinateFormat: function (coord) {
+                    console.log((coord))
+                    console.log(toStringHDMS(coord))
+                    return (coord);
+                },
                 projection: 'EPSG:4326',
-                coordinateFormat: createStringXY(4),
             })
         );
+        // map.on('pointermove', function (event) {
+        //     console.log(event)
+        //     const type = map.hasFeatureAtPixel(event.pixel) ? 'pointer' : 'inherit';
+        //     map.getViewport().style.cursor = type;
+        // });
     });
     return <div className="map" ref={mapRef} />;
 };

@@ -448,3 +448,31 @@ form {
   width: 100%;
   height: 100vh;
 }
+
+.ol-attribution.ol-unselectable.ol-control.ol-uncollapsible {
+  display: none;
+}
+
+.ol-mouse-position {
+  right: 8px;
+}
+
+.ol-mouse-position {
+  bottom: 8px;
+  position: absolute;
+}
+
+.ol-mouse-position {
+  top: unset !important;
+  position: absolute;
+}
+
+.menu {
+  margin-left: 20px;
+  position: absolute;
+  top: 0px;
+}
+
+.ol-zoom.ol-unselectable.ol-control {
+  display: none !important;
+}
