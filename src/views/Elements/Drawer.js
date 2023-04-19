@@ -5,43 +5,30 @@ import { MdHome } from "react-icons/md";
 import { AiFillSetting } from "react-icons/ai";
 import Popup from "reactjs-popup";
 import { useDispatch } from "react-redux";
-import { SystemHandler, SystemHandlerLatLon } from "../../redux/system";
-import { handleButtonSituation } from "../../redux/system";
+import { handleButtonSituation, systemHandler } from "../../redux/system";
 
 export default function Drawer() {
   const [isOpen, setOpen] = useState(false);
   const [isOpenHome, setIsOpenHome] = useState(false);
-
+  const [defaultCoord, setDefaultCoord] = useState();
   const dispatch = useDispatch();
+  // const [degree, setDegree] = useState(false)
+
   useEffect(() => {
+    dispatch(systemHandler(defaultCoord));
     dispatch(handleButtonSituation(isOpenHome));
+    // dispatch(SystemHandlerDegree(degree))
   });
-
-  const [UTM, setUTM] = useState(true);
-  const [notUTM, setNotUTM] = useState(false);
-  useEffect(() => {
-    dispatch(SystemHandler(UTM));
-    dispatch(SystemHandlerLatLon(notUTM));
-  });
-
 
   function getSelectedValue(event) {
     console.log("Value: " + event.target.value);
-    console.log(event.target)
-
-    if (event.target.value === "UTM") {
-      setUTM((current) => !current);
-      setNotUTM((current) => !current);
-    }
-    if (event.target.value === "Lat Lon") {
-      setNotUTM((current) => !current);
-      setUTM((current) => !current);
-    }
+    if (event.target.value == "degree") {
+      setDefaultCoord(false)
+      // setDegree(true)
+    } else (event.target.value == "DEFAULT")
+    setDefaultCoord(true)
+    // setDegree(false)
   }
-
-  useEffect(() => {
-    dispatch(handleButtonSituation(isOpenHome));
-  });
 
   return (
     <div className="menu ">
@@ -84,11 +71,11 @@ export default function Drawer() {
                   className="d-flex justify-content-center mb-2 gap-1"
                   action="#"
                 >
-                  <select name="system-coords" onChange={getSelectedValue} defaultValue={'DEFAULT'}>
+                  <select name="system-coords" onChange={getSelectedValue} >
                     <option value="DEFAULT" >
                       Lat Lon
                     </option>
-                    <option value="daraje">درجه</option>
+                    <option value="degree">درجه</option>
                   </select>
                   <label htmlFor="lang">نوع سیستم مختصات</label>
                 </form>
@@ -100,7 +87,6 @@ export default function Drawer() {
                     type="button"
                     className="btn btn-popup"
                     onClick={() => {
-                      console.log("1");
                       close();
                     }}
                   >
@@ -111,7 +97,6 @@ export default function Drawer() {
                     className="btn btn-secondary"
                     data-dismiss="modal"
                     onClick={() => {
-                      console.log("2");
                       close();
                     }}
                   >

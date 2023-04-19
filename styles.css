@@ -1,5 +1,3 @@
-@import url(//db.onlinewebfonts.com/c/5c53f1a72f61b5b51e2ea79a22ebc38b?family=IRANSansWeb(FaNum));
-
 @font-face {
   font-family: IRANSansX;
   font-style: normal;
@@ -300,34 +298,6 @@ tr:nth-child(even) {
   box-shadow: 0 3px 14px rgb(0 0 0 / 40%);
   width: 50vw;
 }
-
-/* .leaflet-popup-content {
-  width: 418px !important;
-}
-
-.leaflet-popup-content {
-  margin-left: 25% !important;
-} */
-/* .leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
-  opacity: 1;
-  transform: translate3d(325px, -104px, 0px);
-  bottom: 0px;
-  left: 0px;
-}
-
-.leaflet-popup.leaflet-zoom-animated {
-  position: fixed;
-  left: 0 !important;
-} */
-
-/* .leaflet-popup-content {
-  width: 757px !important;
-}
-
-.leaflet-popup.leaflet-zoom-animated {
-  position: fixed;
-  left: -30 !important;
-} */
 
 .top-70 {
   z-index: 100;
