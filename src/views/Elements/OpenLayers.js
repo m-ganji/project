@@ -10,12 +10,10 @@ import { createStringXY } from 'ol/coordinate.js';
 import { FullScreen, defaults as defaultControls } from 'ol/control.js';
 import { toStringHDMS } from 'ol/coordinate.js';
 import { useSelector } from "react-redux";
-import WMSGetFeatureInfo from 'ol/format/WMSGetFeatureInfo.js';
+// import WMSGetFeatureInfo from 'ol/format/WMSGetFeatureInfo.js';
 import proj4 from 'proj4-fully-loaded';
 import { register } from 'ol/proj/proj4';
 import { fromLonLat, transform } from "ol/proj";
-
-
 
 export default function OpenLayers() {
     const mapRef = useRef();
@@ -42,37 +40,32 @@ export default function OpenLayers() {
                 zoom: 6
             }),
         });
+
+        const wmsSource = new TileWMS({
+            url: 'http://localhost:8080/geoserver/rassam-ws/wms?',
+            params: {
+                'LAYERS': 'rassam-ws:pow_distr_rigo_boundary,rassam-ws:oh_lv_line,rassam-ws:oh_mv_line'
+            },
+            serverType: 'geoserver',
+        });
         map.on('click', (event) => {
-            console.log(event)
-            const url = new WMSGetFeatureInfo(
+            const url = wmsSource.getFeatureInfoUrl(
                 event.coordinate,
                 map.getView().getResolution(),
-                {
-                    INFO_FORMAT: 'text/html',
-                    FORMAT: 'image/png',
-                    TRANSPARENT: 'true',
-                },
-                'http://localhost:8080/geoserver/wms'
+                'EPSG:3857',
+                { 'INFO_FORMAT': 'text/html' }
             );
             console.log(url)
-            // Use the URL to retrieve information about the clicked feature
-            fetch(url)
-                .then((response) => response.json())
-                .then((data) => {
-                    // Do something with the data
-                    console.log(data);
-                    // document.getElementById('info').innerHTML = data;
-                });
+            if (url) {
+                fetch(url)
+                    .then((response) => response.text())
+                    .then((html) => {
+                        console.log(html);
+                        document.getElementById('info').innerHTML = html;
+                    });
+            }
         });
-        // map.addControl(
-        //     new MousePosition({
-        //         coordinateFormat: function (coord) {
-        //             // console.log(toStringHDMS(coord))
-        //             return (toStringHDMS(coord));
-        //         },
-        //         projection: 'EPSG:4326',
-        //     })
-        // )
+
         // map.addControl(
         //     new MousePosition({
         //         coordinateFormat: function (coord) {
@@ -82,24 +75,10 @@ export default function OpenLayers() {
         //         projection: 'EPSG:4326',
         //     })
         // )     
-
-        // map.addControl(
-        //     new MousePosition({
-        //         coordinateFormat: function (coord) {
-        //             // console.log(toStringHDMS(coord))
-        //             console.log(coord)
-        //             return (toStringHDMS(coord));
-        //         },
-        //         projection: 'EPSG:4326',
-        //     })
-        // )
-
         map.addControl(
             new MousePosition({
                 coordinateFormat: function (coord) {
-                    const pointIn4326 = [-85.3097, 35.0456];
                     const pointInUTM = proj4("EPSG:3857", "EPSG:32639").forward(coord);
-                    // console.log(pointInUTM);
                     return pointInUTM;
                 },
             })
@@ -111,10 +90,3 @@ export default function OpenLayers() {
         </>
     )
 };
-
-
-
-
-
-
-
