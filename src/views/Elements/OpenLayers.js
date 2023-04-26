@@ -44,11 +44,13 @@ export default function OpenLayers() {
         const wmsSource = new TileWMS({
             url: 'http://localhost:8080/geoserver/rassam-ws/wms?',
             params: {
-                'LAYERS': 'rassam-ws:pow_distr_rigo_boundary,rassam-ws:oh_lv_line,rassam-ws:oh_mv_line'
+                'LAYERS': 'rassam-ws:pow_distr_rigo_boundary,rassam-ws:oh_lv_line,rassam-ws:oh_mv_line',
+                "feature_count": "35"
             },
             serverType: 'geoserver',
         });
         map.on('click', (event) => {
+            document.getElementById('info').innerHTML = '';
             const url = wmsSource.getFeatureInfoUrl(
                 event.coordinate,
                 map.getView().getResolution(),
@@ -87,6 +89,8 @@ export default function OpenLayers() {
     return (
         <>
             <div className="map" ref={mapRef} />
+            <div id="info"></div>
+            <div id="info"></div>
         </>
     )
 };
