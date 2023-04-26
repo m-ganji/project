@@ -17,6 +17,24 @@ import { fromLonLat, transform } from "ol/proj";
 
 export default function OpenLayers() {
     const mapRef = useRef();
+    var parseFeatureArr = function (arr) {
+        var result = {};
+        if (arr.length > 0) {
+            arr.forEach(function (item) {
+                var strId = item.id.split(".");
+                if (!result.hasOwnProperty(strId[0]))
+                    result[strId[0]] = {};
+                result[strId[0]]["count"] = (result[strId[0]]["count"] || 0) + 1;
+                if (!result[strId[0]].hasOwnProperty('list'))
+                    result[strId[0]]['list'] = [];
+                var obj = {};
+                obj['id'] = +strId[1];
+                obj['properties'] = item.properties;
+                result[strId[0]]['list'].push(obj);
+            });
+        }
+        return result;
+    };
     useEffect(() => {
         const map = new Map({
             controls: defaultControls().extend([new FullScreen()]),
@@ -45,7 +63,8 @@ export default function OpenLayers() {
             url: 'http://localhost:8080/geoserver/rassam-ws/wms?',
             params: {
                 'LAYERS': 'rassam-ws:pow_distr_rigo_boundary,rassam-ws:oh_lv_line,rassam-ws:oh_mv_line',
-                "feature_count": "35"
+                "feature_count": "35",
+                "format": "image/png",
             },
             serverType: 'geoserver',
         });
@@ -57,26 +76,31 @@ export default function OpenLayers() {
                 'EPSG:3857',
                 { 'INFO_FORMAT': 'text/html' }
             );
-            console.log(url)
             if (url) {
                 fetch(url)
+                    // .then((response) => response.text())
                     .then((response) => response.text())
                     .then((html) => {
-                        console.log(html);
                         document.getElementById('info').innerHTML = html;
                     });
             }
         });
-
-        // map.addControl(
-        //     new MousePosition({
-        //         coordinateFormat: function (coord) {
-        //             // console.log(toStringHDMS(coord))
-        //             return (toStringHDMS(coord));
-        //         },
-        //         projection: 'EPSG:4326',
-        //     })
-        // )     
+        map.on('click', (event) => {
+            const url = wmsSource.getFeatureInfoUrl(
+                event.coordinate,
+                map.getView().getResolution(),
+                'EPSG:3857',
+                { 'INFO_FORMAT': 'application/json' }
+            );
+            if (url) {
+                fetch(url)
+                    .then((response) => response.text())
+                    .then((html) => {
+                        const features = parseFeatureArr(JSON.parse(html).features);
+                        console.log(features)
+                    });
+            }
+        });
         map.addControl(
             new MousePosition({
                 coordinateFormat: function (coord) {
@@ -89,7 +113,6 @@ export default function OpenLayers() {
     return (
         <>
             <div className="map" ref={mapRef} />
-            <div id="info"></div>
             <div id="info"></div>
         </>
     )
