@@ -25,6 +25,7 @@ const initialSkin = () => {
 export const layoutSlice = createSlice({
   name: "layout",
   initialState: {
+    systemSelector: "",
     skin: initialSkin(),
     isRTL: initialDirection(),
     layout: themeConfig.layout.type,
@@ -35,8 +36,6 @@ export const layoutSlice = createSlice({
     menuHidden: themeConfig.layout.menu.isHidden,
     contentWidth: themeConfig.layout.contentWidth,
     navbarColor: themeConfig.layout.navbar.backgroundColor,
-    isUTM: "",
-    isNotUTM: "",
   },
   reducers: {
     handleRTL: (state, action) => {
@@ -68,18 +67,15 @@ export const layoutSlice = createSlice({
     handleContentWidth: (state, action) => {
       state.contentWidth = action.payload;
     },
-    handleUTMSituation: (state, action) => {
-      state.isUTM = action.payload;
-    },
-    handleNotUTMSituation: (state, action) => {
-      state.isNotUTM = action.payload;
-    },
     handleMenuCollapsed: (state, action) => {
       state.menuCollapsed = action.payload;
       window.localStorage.setItem(
         "menuCollapsed",
         JSON.stringify(action.payload)
       );
+    },
+    systemHandler: (state, action) => {
+      state.systemSelector = action.payload;
     },
   },
 });
@@ -94,9 +90,8 @@ export const {
   handleFooterType,
   handleNavbarColor,
   handleContentWidth,
-  handleUTMSituation,
-  handleNotUTMSituation,
   handleMenuCollapsed,
+  systemHandler,
 } = layoutSlice.actions;
 
 export default layoutSlice.reducer;

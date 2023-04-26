@@ -3,7 +3,6 @@ import "ol/ol.css";
 import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
-import { fromLonLat } from "ol/proj";
 import OSM from "ol/source/OSM";
 import TileWMS from 'ol/source/TileWMS.js';
 import MousePosition from 'ol/control/MousePosition';
@@ -12,12 +11,13 @@ import { FullScreen, defaults as defaultControls } from 'ol/control.js';
 import { toStringHDMS } from 'ol/coordinate.js';
 import { useSelector } from "react-redux";
 import WMSGetFeatureInfo from 'ol/format/WMSGetFeatureInfo.js';
+import proj4 from 'proj4-fully-loaded';
+import { register } from 'ol/proj/proj4';
+import { fromLonLat, transform } from "ol/proj";
+
 
 
 export default function OpenLayers() {
-
-    // const latLond = useSelector((state) => state.system.systemSelector)
-    // console.log(latLond)
     const mapRef = useRef();
     useEffect(() => {
         const map = new Map({
@@ -42,61 +42,28 @@ export default function OpenLayers() {
                 zoom: 6
             }),
         });
-        map.addControl(
-            new MousePosition({
-                coordinateFormat: function (coord) {
-                    return (coord);
-                },
-                projection: 'EPSG:4326',
-            })
-        )
-
-        // map.on('click', function (evt) {
-        //     // console.log(evt.frameState.viewState.center)
-        //     // console.log(View)
-        //     document.getElementById('info').innerHTML = '';
-        //     const viewResolution = 67580.12931800757;
-        //     const url = wmsSource.getFeatureInfoUrl(
-        //         evt.coordinate,
-        //         viewResolution,
-        //         'EPSG:3857',
-        //         { 'INFO_FORMAT': 'text/html' }
-        //     );
-        //     console.log(url)
-        //     if (url) {
-        //         fetch(url)
-        //             .then((response) => response.text())
-        //             .then((html) => {
-        //                 document.getElementById('info').innerHTML = html;
-        //             });
-        //     }
-        // });
         map.on('click', (event) => {
+            console.log(event)
             const url = new WMSGetFeatureInfo(
                 event.coordinate,
                 map.getView().getResolution(),
-                map.getView().getProjection(),
                 {
                     INFO_FORMAT: 'text/html',
                     FORMAT: 'image/png',
-                    TRANSPARENT: true,
-                    QUERY_LAYERS: 'my_layer',
+                    TRANSPARENT: 'true',
                 },
                 'http://localhost:8080/geoserver/wms'
             );
-
+            console.log(url)
             // Use the URL to retrieve information about the clicked feature
             fetch(url)
                 .then((response) => response.json())
                 .then((data) => {
                     // Do something with the data
                     console.log(data);
+                    // document.getElementById('info').innerHTML = data;
                 });
         });
-
-        // if (!defaultCoord) {
-        //     
-        // }
         // map.addControl(
         //     new MousePosition({
         //         coordinateFormat: function (coord) {
@@ -106,14 +73,48 @@ export default function OpenLayers() {
         //         projection: 'EPSG:4326',
         //     })
         // )
+        // map.addControl(
+        //     new MousePosition({
+        //         coordinateFormat: function (coord) {
+        //             // console.log(toStringHDMS(coord))
+        //             return (toStringHDMS(coord));
+        //         },
+        //         projection: 'EPSG:4326',
+        //     })
+        // )     
 
-        // map.on('pointermove', function (event) {
-        //     console.log(event)
-        //     const type = map.hasFeatureAtPixel(event.pixel) ? 'pointer' : 'inherit';
-        //     map.getViewport().style.cursor = type;
-        // });
+        // map.addControl(
+        //     new MousePosition({
+        //         coordinateFormat: function (coord) {
+        //             // console.log(toStringHDMS(coord))
+        //             console.log(coord)
+        //             return (toStringHDMS(coord));
+        //         },
+        //         projection: 'EPSG:4326',
+        //     })
+        // )
+
+        map.addControl(
+            new MousePosition({
+                coordinateFormat: function (coord) {
+                    const pointIn4326 = [-85.3097, 35.0456];
+                    const pointInUTM = proj4("EPSG:3857", "EPSG:32639").forward(coord);
+                    // console.log(pointInUTM);
+                    return pointInUTM;
+                },
+            })
+        )
     });
     return (
-        <div className="map" ref={mapRef} />
+        <>
+            <div className="map" ref={mapRef} />
+        </>
     )
 };
+
+
+
+
+
+
+

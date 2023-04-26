@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     buttonSituation: "",
-    systemSelector: false,
-    systemSelectorDegree: "",
 };
 
 export const counterSlice = createSlice({
@@ -16,16 +14,13 @@ export const counterSlice = createSlice({
         systemHandler: (state, action) => {
             state.systemSelector = action.payload;
         },
-        systemHandlerDegree: (state, action) => {
-            state.systemSelectorDegree = action.payload;
-        },
+        
     },
 });
 
 export const {
     handleButtonSituation,
     systemHandler,
-    systemHandlerDegree,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

@@ -5,21 +5,18 @@ import { MdHome } from "react-icons/md";
 import { AiFillSetting } from "react-icons/ai";
 import Popup from "reactjs-popup";
 import { useDispatch } from "react-redux";
-import { handleButtonSituation, systemHandler } from "../../redux/system";
+import { handleButtonSituation } from "../../redux/system";
+import {  systemHandler } from "../../redux/layout";
 
 export default function Drawer() {
   const [isOpen, setOpen] = useState(false);
   const [isOpenHome, setIsOpenHome] = useState(false);
   const [defaultCoord, setDefaultCoord] = useState();
   const dispatch = useDispatch();
-  // const [degree, setDegree] = useState(false)
-
   useEffect(() => {
     dispatch(systemHandler(defaultCoord));
     dispatch(handleButtonSituation(isOpenHome));
-    // dispatch(SystemHandlerDegree(degree))
   });
-
   function getSelectedValue(event) {
     console.log("Value: " + event.target.value);
     if (event.target.value == "degree") {
@@ -29,7 +26,6 @@ export default function Drawer() {
     setDefaultCoord(true)
     // setDegree(false)
   }
-
   return (
     <div className="menu ">
       <div className="circle">
