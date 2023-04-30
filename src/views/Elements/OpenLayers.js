@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "ol/ol.css";
 import Map from "ol/Map";
 import View from "ol/View";
@@ -14,8 +14,10 @@ import { useSelector } from "react-redux";
 import proj4 from 'proj4-fully-loaded';
 import { register } from 'ol/proj/proj4';
 import { fromLonLat, transform } from "ol/proj";
+// import { TreeView } from '@mui/lab';
 
 export default function OpenLayers() {
+    // const [wmsFeaturesInfo, setWmsFeaturesInfo] = useState({});
     const mapRef = useRef();
     var parseFeatureArr = function (arr) {
         var result = {};
@@ -58,7 +60,7 @@ export default function OpenLayers() {
                 zoom: 6
             }),
         });
-
+        document.getElementById('info').innerHTML = '';
         const wmsSource = new TileWMS({
             url: 'http://localhost:8080/geoserver/rassam-ws/wms?',
             params: {
@@ -69,7 +71,6 @@ export default function OpenLayers() {
             serverType: 'geoserver',
         });
         map.on('click', (event) => {
-            document.getElementById('info').innerHTML = '';
             const url = wmsSource.getFeatureInfoUrl(
                 event.coordinate,
                 map.getView().getResolution(),
@@ -81,7 +82,7 @@ export default function OpenLayers() {
                     // .then((response) => response.text())
                     .then((response) => response.text())
                     .then((html) => {
-                        document.getElementById('info').innerHTML = html;
+                        // document.getElementById('info').innerHTML = html;
                     });
             }
         });
@@ -96,8 +97,11 @@ export default function OpenLayers() {
                 fetch(url)
                     .then((response) => response.text())
                     .then((html) => {
-                        const features = parseFeatureArr(JSON.parse(html).features);
-                        console.log(features)
+                        // const features = parseFeatureArr(JSON.parse(html).features);
+                        // console.log(Object.entries(features)[0][0]);
+                        // document.getElementById('info').innerHTML = (JSON.stringify([features]));
+                        const features = parseFeatureArr(data.features);
+                        // setWmsFeaturesInfo(features);
                     });
             }
         });
@@ -113,7 +117,62 @@ export default function OpenLayers() {
     return (
         <>
             <div className="map" ref={mapRef} />
-            <div id="info"></div>
+            <div id="info">
+                {/* <TreeView
+                // defaultExpanded={["3"]}
+                // defaultCollapseIcon={<ArrowDropDown />}
+                // defaultExpandIcon={<ArrowLeft />}
+                // sx={{ width: "95%" }}
+                >
+                    {Object.keys(wmsFeaturesInfo).map((item, index) => {
+                        return (
+                            <StyledTreeItem
+                            // nodeId={initInfo?.translateTables[item] || item}
+                            // labelText={initInfo?.translateTables[item] || item}
+                            // labelIcon={ReversLabel}
+                            // labelInfo={String(wmsFeaturesInfo[item].count)}
+                            // key={initInfo?.translateTables[item] || item}
+                            >
+                                {wmsFeaturesInfo[item].list.map(
+                                    (childItem, childIndex) => {
+                                        return (
+                                            <StyledTreeItem
+                                            // nodeId={String(childItem.id)}
+                                            // labelText={`${childItem.properties[
+                                            //     initInfo?.tableLists[item]["id"]
+                                            //     ] || childItem.id
+                                            //     }`}
+                                            // labelIcon={ReversLabelOutlined}
+                                            // color="#1a73e8"
+                                            // bgColor="#e8f0fe"
+                                            // key={
+                                            //     childItem.properties[
+                                            //     initInfo?.tableLists[item]["id"]
+                                            //     ] || childItem.id
+                                            // }
+                                            >
+                                                <Table
+                                                // sx={{
+                                                //     width: "100%",
+                                                //     margin: 1,
+                                                // }}
+                                                // align={"left"}
+                                                // headers={[fa.home.FIELD, fa.home.VALUE]}
+                                                // columns={["key", "value"]}
+                                                // rows={propertyInfo(
+                                                //     childItem.properties,
+                                                //     initInfo.translateTableFields[item]
+                                                // )}
+                                                />
+                                            </StyledTreeItem>
+                                        );
+                                    }
+                                )}
+                            </StyledTreeItem>
+                        );
+                    })}
+                </TreeView> */}
+            </div>
         </>
     )
 };
