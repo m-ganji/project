@@ -14,10 +14,13 @@ import { useSelector } from "react-redux";
 import proj4 from 'proj4-fully-loaded';
 import { register } from 'ol/proj/proj4';
 import { fromLonLat, transform } from "ol/proj";
-// import { TreeView } from '@mui/lab';
+import TreeView from '@mui/lab/TreeView';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import TreeItem from '@mui/lab/TreeItem';
 
 export default function OpenLayers() {
-    // const [wmsFeaturesInfo, setWmsFeaturesInfo] = useState({});
+    // console.log(wmsFeaturesInfo);
     const mapRef = useRef();
     var parseFeatureArr = function (arr) {
         var result = {};
@@ -37,6 +40,8 @@ export default function OpenLayers() {
         }
         return result;
     };
+    const [wmsFeaturesInfo, setWmsFeaturesInfo] = useState("");
+    console.log(wmsFeaturesInfo);
     useEffect(() => {
         const map = new Map({
             controls: defaultControls().extend([new FullScreen()]),
@@ -60,7 +65,6 @@ export default function OpenLayers() {
                 zoom: 6
             }),
         });
-        document.getElementById('info').innerHTML = '';
         const wmsSource = new TileWMS({
             url: 'http://localhost:8080/geoserver/rassam-ws/wms?',
             params: {
@@ -75,33 +79,15 @@ export default function OpenLayers() {
                 event.coordinate,
                 map.getView().getResolution(),
                 'EPSG:3857',
-                { 'INFO_FORMAT': 'text/html' }
-            );
-            if (url) {
-                fetch(url)
-                    // .then((response) => response.text())
-                    .then((response) => response.text())
-                    .then((html) => {
-                        // document.getElementById('info').innerHTML = html;
-                    });
-            }
-        });
-        map.on('click', (event) => {
-            const url = wmsSource.getFeatureInfoUrl(
-                event.coordinate,
-                map.getView().getResolution(),
-                'EPSG:3857',
                 { 'INFO_FORMAT': 'application/json' }
             );
             if (url) {
                 fetch(url)
                     .then((response) => response.text())
-                    .then((html) => {
-                        // const features = parseFeatureArr(JSON.parse(html).features);
-                        // console.log(Object.entries(features)[0][0]);
-                        // document.getElementById('info').innerHTML = (JSON.stringify([features]));
-                        const features = parseFeatureArr(data.features);
-                        // setWmsFeaturesInfo(features);
+                    .then((data) => {
+                        const features = parseFeatureArr(JSON.parse(data).features);
+                        console.log(Object.entries(features));
+                        setWmsFeaturesInfo((features))
                     });
             }
         });
@@ -113,66 +99,35 @@ export default function OpenLayers() {
                 },
             })
         )
-    });
+    }, []
+    );
     return (
         <>
             <div className="map" ref={mapRef} />
             <div id="info">
-                {/* <TreeView
-                // defaultExpanded={["3"]}
-                // defaultCollapseIcon={<ArrowDropDown />}
-                // defaultExpandIcon={<ArrowLeft />}
-                // sx={{ width: "95%" }}
-                >
-                    {Object.keys(wmsFeaturesInfo).map((item, index) => {
-                        return (
-                            <StyledTreeItem
-                            // nodeId={initInfo?.translateTables[item] || item}
-                            // labelText={initInfo?.translateTables[item] || item}
-                            // labelIcon={ReversLabel}
-                            // labelInfo={String(wmsFeaturesInfo[item].count)}
-                            // key={initInfo?.translateTables[item] || item}
-                            >
-                                {wmsFeaturesInfo[item].list.map(
+                {Object.keys(wmsFeaturesInfo).map((item, index) => {
+                    return (
+                        <TreeView
+                            defaultCollapseIcon={<ExpandMoreIcon />}
+                            defaultExpandIcon={<ChevronRightIcon />}
+                            sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+                            key={index}
+                        >
+                            <TreeItem nodeId="{index}" label={item} >
+
+                                {/* {wmsFeaturesInfo[item].list.map(
                                     (childItem, childIndex) => {
                                         return (
-                                            <StyledTreeItem
-                                            // nodeId={String(childItem.id)}
-                                            // labelText={`${childItem.properties[
-                                            //     initInfo?.tableLists[item]["id"]
-                                            //     ] || childItem.id
-                                            //     }`}
-                                            // labelIcon={ReversLabelOutlined}
-                                            // color="#1a73e8"
-                                            // bgColor="#e8f0fe"
-                                            // key={
-                                            //     childItem.properties[
-                                            //     initInfo?.tableLists[item]["id"]
-                                            //     ] || childItem.id
-                                            // }
-                                            >
-                                                <Table
-                                                // sx={{
-                                                //     width: "100%",
-                                                //     margin: 1,
-                                                // }}
-                                                // align={"left"}
-                                                // headers={[fa.home.FIELD, fa.home.VALUE]}
-                                                // columns={["key", "value"]}
-                                                // rows={propertyInfo(
-                                                //     childItem.properties,
-                                                //     initInfo.translateTableFields[item]
-                                                // )}
-                                                />
-                                            </StyledTreeItem>
+                                            console.log(childItem)
                                         );
                                     }
-                                )}
-                            </StyledTreeItem>
-                        );
-                    })}
-                </TreeView> */}
-            </div>
+                                )} */}
+
+                            </TreeItem>
+                        </TreeView>
+                    )
+                })}
+            </div >
         </>
     )
 };
