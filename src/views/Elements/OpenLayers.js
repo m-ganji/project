@@ -41,7 +41,6 @@ export default function OpenLayers() {
         return result;
     };
     const [wmsFeaturesInfo, setWmsFeaturesInfo] = useState("");
-    console.log(wmsFeaturesInfo);
     useEffect(() => {
         const map = new Map({
             controls: defaultControls().extend([new FullScreen()]),
@@ -86,7 +85,6 @@ export default function OpenLayers() {
                     .then((response) => response.text())
                     .then((data) => {
                         const features = parseFeatureArr(JSON.parse(data).features);
-                        console.log(Object.entries(features));
                         setWmsFeaturesInfo((features))
                     });
             }
@@ -113,16 +111,16 @@ export default function OpenLayers() {
                             sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
                             key={index}
                         >
-                            <TreeItem nodeId="{index}" label={item} >
-
-                                {/* {wmsFeaturesInfo[item].list.map(
+                            <TreeItem nodeId="1" label={<span>{item}: {Object.values(wmsFeaturesInfo)[index].count} </span>} >
+                                {wmsFeaturesInfo[item].list.map(
                                     (childItem, childIndex) => {
                                         return (
-                                            console.log(childItem)
+                                            <TreeItem nodeId="2" label={<span>id: {childItem.id}</span>} key={childIndex} >
+                                                {/* <treeitem nodeId="3" label={childItem.id} /> */}
+                                            </TreeItem>
                                         );
                                     }
-                                )} */}
-
+                                )}
                             </TreeItem>
                         </TreeView>
                     )

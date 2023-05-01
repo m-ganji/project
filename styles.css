@@ -446,3 +446,12 @@ form {
 .ol-zoom.ol-unselectable.ol-control {
   display: none !important;
 }
+
+div#info {
+  display: flex;
+  position: absolute;
+  top: 25px;
+  right: 0px;
+  background-color: white;
+  flex-direction: column;
+}
