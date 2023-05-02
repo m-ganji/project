@@ -116,7 +116,42 @@ export default function OpenLayers() {
                                     (childItem, childIndex) => {
                                         return (
                                             <TreeItem nodeId="2" label={<span>id: {childItem.id}</span>} key={childIndex} >
-                                                {/* <treeitem nodeId="3" label={childItem.id} /> */}
+                                                <TreeItem nodeId={childItem.id} label={<span>ID: {childItem.properties.ID}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>act_len: {childItem.properties.act_len}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>allowed_current: {childItem.properties.allowed_current}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>arrangement: {childItem.properties.arrangement}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>cable_mat: {childItem.properties.cable_mat}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>calculated_length: {childItem.properties.calculated_length}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>class_type: {childItem.properties.class_type}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>cndct_se_ar: {childItem.properties.cndct_se_ar}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>cod_name: {childItem.properties.cod_name}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>color: {childItem.properties.color}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>conductor_temp: {childItem.properties.conductor_temp}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>conductor_voltage: {childItem.properties.conductor_voltage}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>description: {childItem.properties.description}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>design_status: {childItem.properties.design_status}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>dist_name: {childItem.properties.dist_name}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>equ_rec: {childItem.properties.equ_rec}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>equ_rsis: {childItem.properties.equ_rsis}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>feeder_name: {childItem.properties.feeder_name}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>feeder_segment_code: {childItem.properties.feeder_segment_code}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>hrm: {childItem.properties.hrm}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>id: {childItem.properties.id}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>ins_type: {childItem.properties.ins_type}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>insert_date_logical: {childItem.properties.insert_date_logical}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>insert_user_logical: {childItem.properties.insert_user_logical}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>manufactor: {childItem.properties.manufactor}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>mspec_no: {childItem.properties.mspec_no}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>net_type: {childItem.properties.net_type}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>proj_id: {childItem.properties.proj_id}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>spacer: {childItem.properties.spacer}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>specific_id: {childItem.properties.specific_id}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>update_date_logical: {childItem.properties.update_date_logical}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>update_user_logical: {childItem.properties.update_user_logical}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>util_year: {childItem.properties.util_year}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>voltage: {childItem.properties.voltage}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>z_seq_ract: {childItem.properties.z_seq_ract}</span>} />
+                                                <TreeItem nodeId={childItem.id} label={<span>z_seq_res: {childItem.properties.z_seq_res}</span>} />
                                             </TreeItem>
                                         );
                                     }

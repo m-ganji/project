@@ -454,4 +454,5 @@ div#info {
   right: 0px;
   background-color: white;
   flex-direction: column;
+  border-radius: 10px;
 }
